@@ -2,122 +2,41 @@
 layout: default
 ---
 
-Text can be **bold**, _italic_, or ~~strikethrough~~.
+## 计算机技术实战
 
-[Link to another page](./another-page.html).
+#### Java
 
-There should be whitespace between paragraphs.
+* [理解Java中的锁概念](./java/java_lock.html)
+* [理解类加载机制](./java/class_load.html)
+* [自定义类加载器和反射调用](./java/reflect.html)
+* [IO](./java/io.html)
 
-There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project.
+#### Android
 
-# Header 1
-
-This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
-
-## Header 2
-
-> This is a blockquote following a header.
->
-> When something is important enough, you do it even if the odds are not in your favor.
-
-### Header 3
-
-```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
-```
-
-```ruby
-# Ruby code with syntax highlighting
-GitHubPages::Dependencies.gems.each do |gem, version|
-  s.add_dependency(gem, "= #{version}")
-end
-```
-
-#### Header 4
-
-*   This is an unordered list following a header.
-*   This is an unordered list following a header.
-*   This is an unordered list following a header.
-
-##### Header 5
-
-1.  This is an ordered list following a header.
-2.  This is an ordered list following a header.
-3.  This is an ordered list following a header.
-
-###### Header 6
-
-| head1        | head two          | three |
-|:-------------|:------------------|:------|
-| ok           | good swedish fish | nice  |
-| out of stock | good and plenty   | nice  |
-| ok           | good `oreos`      | hmm   |
-| ok           | good `zoute` drop | yumm  |
-
-### There's a horizontal rule below this.
-
-* * *
-
-### Here is an unordered list:
-
-*   Item foo
-*   Item bar
-*   Item baz
-*   Item zip
-
-### And an ordered list:
-
-1.  Item one
-1.  Item two
-1.  Item three
-1.  Item four
-
-### And a nested list:
-
-- level 1 item
-  - level 2 item
-  - level 2 item
-    - level 3 item
-    - level 3 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-  - level 2 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-- level 1 item
-
-### Small image
-
-![Octocat](https://assets-cdn.github.com/images/icons/emoji/octocat.png)
-
-### Large image
-
-![Branching](https://guides.github.com/activities/hello-world/branching.png)
+* [App启动流程](./android/app_startup.html)
+* [插件化](./android/pluggable.html)
+* [组件化](./android/componentization.html)
+* [电池寿命](./android/battery_life.html)
+* [安全](./android/security.html)
+* [adb调试](./android/adb.html)
 
 
-### Definition lists can be used with HTML syntax.
+#### 架构思想
 
-<dl>
-<dt>Name</dt>
-<dd>Godzilla</dd>
-<dt>Born</dt>
-<dd>1952</dd>
-<dt>Birthplace</dt>
-<dd>Japan</dd>
-<dt>Color</dt>
-<dd>Green</dd>
-</dl>
+* [架构模式](./develop/architecture.html)
 
-```
-Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this.
-```
+#### 计算机网络
 
-```
-The final element.
-```
+* [UDP](./network/udp.html)
+* [TCP](./network/tcp.html)
+* [长连接](./network/longconn.html)
+* [wireshark抓包](./network/wireshark.html)
+
+
+#### 工具箱
+
+* [辅助工具](./toolkit/toolkit.html)
+
+#### 文档帮助
+
+* [md格式](./index_origin.html)
