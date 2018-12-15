@@ -232,7 +232,7 @@ $ adb shell am start -n com.example.app/.ExampleActivity
 ```java
 final class ActivityManagerShellCommand extends ShellCommand {
 
-	int runStartActivity(PrintWriter pw) throws RemoteException {
+    int runStartActivity(PrintWriter pw) throws RemoteException {
         Intent intent;
         try {
             intent = makeIntent(UserHandle.USER_CURRENT);
@@ -604,7 +604,7 @@ public class ActivityManagerService extends IActivityManager.Stub
 }
 ```
 后续就进入了Activity启动流程。运行示例：
-```java
+```
 $ adb shell am start -n com.github.mwping.lordhelperapp/.activity.MainActivity
 Starting: Intent { cmp=com.github.mwping.lordhelperapp/.activity.MainActivity }
 ```
