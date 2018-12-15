@@ -22,3 +22,27 @@ Fetching projects: 100% (592/592), done.
 Syncing work tree: 100% (592/592), done.  
 ```
 
+### 查找aidl生成的java类
+
+例如查找ActivityManagerService对应的IActivityManager.java、PackageManagerService对应的IPackageManager.java：
+
+```java
+public class ActivityManagerService extends IActivityManager.Stub
+        implements Watchdog.Monitor, BatteryStatsImpl.BatteryCallback {
+}
+```
+
+
+```java
+public class PackageManagerService extends IPackageManager.Stub
+        implements PackageSender {
+}
+```
+使用命令行进行查找：
+```
+$ cd /Volumes/Android/aosp/out/target/common/obj/JAVA_LIBRARIES/framework_intermediates/
+$ find . -name "IActivityManager.java" -or -name "IPackageManager.java"
+./core/java/android/app/IActivityManager.java
+./core/java/android/content/pm/IPackageManager.java
+```
+
