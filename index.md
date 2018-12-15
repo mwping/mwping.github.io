@@ -26,7 +26,7 @@ layout: default
 ##### 源码研究专题
 
 * [Android源码阅读指南](./android/android_source_guide.html)
-
+* [adb shell am 命令和ActivityManagerService](./android/adb_shell_am.html)
 
 #### 架构思想
 
