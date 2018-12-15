@@ -18,7 +18,14 @@ layout: default
 * [组件化](./android/componentization.html)
 * [电池寿命](./android/battery_life.html)
 * [安全](./android/security.html)
+
+##### adb专题
+
 * [adb调试](./android/adb.html)
+
+##### 源码研究专题
+
+* [Android源码阅读指南](./android/android_source_guide.html)
 
 
 #### 架构思想
