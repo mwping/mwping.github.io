@@ -46,3 +46,12 @@ $ find . -name "IActivityManager.java" -or -name "IPackageManager.java"
 ./core/java/android/content/pm/IPackageManager.java
 ```
 
+其实阅读源码不一定非要找到aidl生成的java文件，找到aidl即可：
+
+```
+$ cd /Volumes/Android/aosp/frameworks/base
+$ find . -name "IActivityManager.aidl" -or -name "IPackageManager.aidl"
+./core/java/android/app/IActivityManager.aidl
+./core/java/android/content/pm/IPackageManager.aidl
+```
+
