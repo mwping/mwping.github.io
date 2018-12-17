@@ -23,6 +23,10 @@ layout: default
 
 * [adb调试](./android/adb.html)
 
+##### 新版本解读
+
+* [Android 9 Pie](./android/android-9-pie.html)
+
 ##### 源码研究专题
 
 * [Android源码阅读指南](./android/android_source_guide.html)
