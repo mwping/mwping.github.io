@@ -22,6 +22,51 @@ Fetching projects: 100% (592/592), done.
 Syncing work tree: 100% (592/592), done.  
 ```
 
+### repo操作帮助
+
+**参考文档**
+
+* [https://source.android.com/setup/develop](https://source.android.com/setup/develop)
+* [https://source.android.com/setup/develop/repo](https://source.android.com/setup/develop/repo)
+
+**查看远程分支**
+```
+$ cd /Volumes/Android/aosp/
+$ cd .repo/manifests
+$ git branch -a | cut -d / -f 3
+* default
+android-8.0.0_r17 -> origin
+android-8.1.0_r23 -> origin
+android-8.1.0_r9 -> origin
+master -> origin
+...
+```
+**列出项目及对应目录**
+```
+$ repo list
+...
+frameworks/base : platform/frameworks/base
+...
+```
+
+**查询某个项目的分支**
+```
+$ repo branch frameworks/base
+   (no branches)
+```
+
+**检出分支**
+```
+$ repo start master --all
+Starting master: 100% (592/592), done. 
+```
+
+**再次查询某个项目的分支**
+```
+$ repo branch frameworks/base
+*  master                    | in all projects
+```
+
 ### 查找aidl生成的java类
 
 例如查找ActivityManagerService对应的IActivityManager.java、PackageManagerService对应的IPackageManager.java：
