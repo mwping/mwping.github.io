@@ -17,3 +17,37 @@
 
 ![](../assets/images/settings_cutout.png)
 ![](../assets/images/settings_cutout_selected.png)
+
+### ImageDecoder
+
+**基本用法**
+
+```java
+    ImageDecoder.Source source = ImageDecoder.createSource(context.getAssets(), "sample.png");
+        try {
+        bitmap = ImageDecoder.decodeBitmap(source, new ImageDecoder.OnHeaderDecodedListener() {
+            @Override
+            public void onHeaderDecoded(ImageDecoder decoder, ImageDecoder.ImageInfo info, ImageDecoder.Source source) {
+                decoder.setTargetSampleSize(sampleSize);
+                addCorner(decoder);
+            }
+        });
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+```
+
+![](../assets/images/image_decoder_sample.png)
+
+
+缩放4倍：
+
+![](../assets/images/image_decoder_sample2.png)
+
+圆角矩形：
+
+![](../assets/images/image_decoder_sample3.png)
+
+圆角半径足够大，变成圆形：
+
+![](../assets/images/image_decoder_sample4.png)
