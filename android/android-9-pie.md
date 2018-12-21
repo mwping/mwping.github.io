@@ -35,6 +35,29 @@
     } catch (IOException e) {
         e.printStackTrace();
     }
+
+    private void addCorner(ImageDecoder decoder) {
+        if (cornerProgress == 0) {
+            return;
+        }
+        decoder.setPostProcessor(new PostProcessor() {
+            @Override
+            public int onPostProcess(Canvas canvas) {
+                // This will create rounded corners.
+                Path path = new Path();
+                path.setFillType(Path.FillType.INVERSE_EVEN_ODD);
+                int width = canvas.getWidth();
+                int height = canvas.getHeight();
+                path.addRoundRect(0, 0, width, height, cornerProgress, cornerProgress, Path.Direction.CW);
+                Paint paint = new Paint();
+                paint.setAntiAlias(true);
+                paint.setColor(Color.TRANSPARENT);
+                paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC));
+                canvas.drawPath(path, paint);
+                return PixelFormat.TRANSLUCENT;
+            }
+        });
+    }
 ```
 
 ![](../assets/images/image_decoder_sample.png)
