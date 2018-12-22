@@ -51,5 +51,6 @@ layout: default
 
 #### 文档帮助
 
+* [发布到jitpack](./jitpack.html)
 * [md格式](./index_bak.html)
 * [待办事项](./help/todo.html)
