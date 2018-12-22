@@ -1,6 +1,7 @@
 ## 待办事项
 
 * dex格式/Tinker
+* hugo/aspectj/asm
 * tcp/udp
 * 长连接
 * http/https/http1.0/1.1/2.0
