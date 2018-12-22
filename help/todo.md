@@ -11,4 +11,5 @@
 * eventbus
 * retrofit
 * 算法/剑指offer
+* 发布gradle插件：[https://www.jianshu.com/p/376ae605ebf1](https://www.jianshu.com/p/376ae605ebf1)
 
