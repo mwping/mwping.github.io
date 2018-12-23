@@ -116,4 +116,43 @@ Tomcat started.
 $ sudo sh shutdown.sh
 ```
 
+**启用https**
+
+1.把刚刚生成的mwp123.keystore移到apache-tomcat-9.0.14/conf目录下
+
+2.修改conf/server.xml文件：
+
+初始状态(代码片段)：
+```html
+    <!--
+    <Connector port="8443" protocol="org.apache.coyote.http11.Http11NioProtocol"
+               maxThreads="150" SSLEnabled="true">
+        <SSLHostConfig>
+            <Certificate certificateKeystoreFile="conf/localhost-rsa.jks"
+                         type="RSA" />
+        </SSLHostConfig>
+    </Connector>
+    -->
+```
+
+配置秘钥库路径和密码，变成：
+
+```html
+    <Connector port="8443" protocol="org.apache.coyote.http11.Http11NioProtocol"
+               maxThreads="150" SSLEnabled="true"
+               keystoreFile="conf/mwp123.keystore" 
+               keystorePass="mwp123"
+               >
+<!--         <SSLHostConfig>
+            <Certificate certificateKeystoreFile="conf/localhost-rsa.jks"
+                         type="RSA" />
+        </SSLHostConfig> -->
+    </Connector>
+```
+
+打开[https://localhost:8443/](https://localhost:8443/)验证配置是否生效：
+
+![](../../assets/images/tomcatlocalhttpstest.png)
+
+注意每次修改了配置需要重启Tomcat才能生效(`sudo sh shutdown.sh`、`sudo sh startup.sh`)。
 
