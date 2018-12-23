@@ -55,5 +55,6 @@ layout: default
 #### 文档帮助
 
 * [jitpack发布指南](./help/jitpack.html)
+* [命令行助手](./help/quick-cmd.html)
 * [md格式](./index_bak.html)
 * [待办事项](./help/todo.html)
