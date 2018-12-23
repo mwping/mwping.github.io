@@ -44,9 +44,9 @@ layout: default
 * [长连接](./network/longconn.html)
 * [wireshark抓包](./network/wireshark.html)
 
-**okhttp专题**
+**http专题**
 
-* [okhttp指南](./network/okhttp/guide.html)
+* [okhttp指南](./network/http/okhttp-guide.html)
 
 #### 工具箱
 
