@@ -15,6 +15,12 @@
   1. [开启8443端口](#3.1)
   2. [配置keystore路径和密码](#3.2)
   
+* ##### [绑定域名](#4)
+  1. [申请域名](#4.1)
+  2. [添加域名解析](#4.2)
+  3. [配置tomcat http端口](#4.3)
+  4. [配置tomcat https端口](#4.4)
+  5. [配置tomcat 域名](#4.5)
 
 <h3 id="1">配置Tomcat</h3>
 
@@ -150,3 +156,116 @@ mwpingart01, 2018-12-25, PrivateKeyEntry,
 打开[https://localhost:8443/](https://localhost:8443/)验证配置是否生效。下图说明https配置成功。
 
 ![](../../assets/images/tomcatlocalhttpstest.png)
+
+<h3 id="4">绑定域名</h3>
+
+<h4 id="4.1">申请域名</h4> 
+
+登录阿里云申请注册域名：[https://www.aliyun.com/](https://www.aliyun.com/)
+
+<h4 id="4.2">添加域名解析</h4> 
+
+查询本机ip，这里查到的是192.168.0.105：
+```
+$ ifconfig en0
+en0: flags=8863<UP,BROADCAST,SMART,RUNNING,SIMPLEX,MULTICAST> mtu 1500
+  ether ac:bc:32:d2:68:c7 
+  inet6 fe80::10a6:75b5:b221:abb6%en0 prefixlen 64 secured scopeid 0x5 
+  inet 192.168.0.105 netmask 0xffffff00 broadcast 192.168.0.255
+  nd6 options=201<PERFORMNUD,DAD>
+  media: autoselect
+  status: active
+```
+
+阿里云域名管理-解析，添加刚刚查到的ipv4地址(192.168.0.105)：
+![](../../assets/images/dns-local-ip.png)
+
+验证域名解析是否生效，下面能ping通说明已生效：
+```
+$ ping www.mwping.art
+PING www.mwping.art (192.168.0.105): 56 data bytes
+64 bytes from 192.168.0.105: icmp_seq=0 ttl=64 time=0.087 ms
+64 bytes from 192.168.0.105: icmp_seq=1 ttl=64 time=0.100 ms
+```
+
+<h4 id="4.3">配置tomcat http端口</h4> 
+
+找到apache-tomcat-9.0.14/conf/server.xml文件，port改成\"80\"，redirectPort改成\"443\"：
+
+```html
+    <Connector port="8080" protocol="HTTP/1.1"
+               connectionTimeout="20000"
+               redirectPort="8443" />
+```
+
+改成
+```html
+    <Connector port="80" protocol="HTTP/1.1"
+               connectionTimeout="20000"
+               redirectPort="443" />
+```
+
+<h4 id="4.4">配置tomcat https端口</h4> 
+
+此处的8443改成443：
+
+```html
+    <Connector port="8443" protocol="org.apache.coyote.http11.Http11NioProtocol"
+               maxThreads="150" SSLEnabled="true"
+               keystoreFile="conf/keystore/mwpingart.keystore" 
+               keystorePass="mwp123">
+<!--         <SSLHostConfig>
+            <Certificate certificateKeystoreFile="conf/localhost-rsa.jks"
+                         type="RSA" />
+        </SSLHostConfig> -->
+    </Connector>
+```
+
+改成
+```html
+    <Connector port="443" protocol="org.apache.coyote.http11.Http11NioProtocol"
+               maxThreads="150" SSLEnabled="true"
+               keystoreFile="conf/keystore/mwpingart.keystore" 
+               keystorePass="mwp123">
+<!--         <SSLHostConfig>
+            <Certificate certificateKeystoreFile="conf/localhost-rsa.jks"
+                         type="RSA" />
+        </SSLHostConfig> -->
+    </Connector>
+```
+
+<h4 id="4.5">配置tomcat域名</h4> 
+
+此处的localhost改成www.mwping.art
+
+```html
+<Engine name="Catalina" defaultHost="localhost">
+```
+改成：
+```html
+<Engine name="Catalina" defaultHost="www.mwping.art">
+```
+
+webapps的域名也需要修改：
+
+```html
+<Host name="localhost"  appBase="webapps"
+            unpackWARs="true" autoDeploy="true">
+```
+改成
+```html
+<Host name="www.mwping.art"  appBase="webapps"
+            unpackWARs="true" autoDeploy="true">
+```
+
+重启tomcat，打开下面的网址，验证域名是否生效：
+
+1. [http://www.mwping.art/](http://www.mwping.art/)
+2. [https://www.mwping.art/](https://www.mwping.art/)
+
+下图说明域名绑定已生效：
+
+![](../../assets/images/confighttp.png)
+
+![](../../assets/images/confighttps.png)
+
