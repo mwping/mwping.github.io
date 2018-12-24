@@ -10,6 +10,10 @@
 * ##### [配置服务器证书](#2)
   1. [创建keystore](#2.1)
   2. [查询keystore](#2.2)
+
+* ##### [开启https](#3)
+  1. [开启8443端口](#3.1)
+  2. [配置keystore路径和密码](#3.2)
   
 
 <h3 id="1">配置Tomcat</h3>
@@ -97,3 +101,52 @@ mwpingart02, 2018-12-25, PrivateKeyEntry,
 mwpingart01, 2018-12-25, PrivateKeyEntry, 
 证书指纹 (SHA1): 7A:04:F7:BE:20:1B:D2:8E:A7:E8:8C:37:50:93:A1:A0:2F:6F:48:BE
 ```
+
+<h3 id="3">开启https</h3>
+
+<h4 id="3.1">开启8443端口</h4> 
+
+找到apache-tomcat-9.0.14/conf/server.xml文件，修改代码片段：
+
+```html
+    <!--
+    <Connector port="8443" protocol="org.apache.coyote.http11.Http11NioProtocol"
+               maxThreads="150" SSLEnabled="true">
+        <SSLHostConfig>
+            <Certificate certificateKeystoreFile="conf/localhost-rsa.jks"
+                         type="RSA" />
+        </SSLHostConfig>
+    </Connector>
+    -->
+```
+
+改成
+
+```html
+    <Connector port="8443" protocol="org.apache.coyote.http11.Http11NioProtocol"
+               maxThreads="150" SSLEnabled="true">
+<!--         <SSLHostConfig>
+            <Certificate certificateKeystoreFile="conf/localhost-rsa.jks"
+                         type="RSA" />
+        </SSLHostConfig> -->
+    </Connector>
+```
+
+<h4 id="3.2">配置keystore路径和密码</h4> 
+
+继续修改上面的代码片段，添加keystoreFile、keystorePass配置，最终此片段代码如下：
+```html
+    <Connector port="8443" protocol="org.apache.coyote.http11.Http11NioProtocol"
+               maxThreads="150" SSLEnabled="true"
+               keystoreFile="conf/keystore/mwpingart.keystore" 
+               keystorePass="mwp123">
+<!--         <SSLHostConfig>
+            <Certificate certificateKeystoreFile="conf/localhost-rsa.jks"
+                         type="RSA" />
+        </SSLHostConfig> -->
+    </Connector>
+```
+
+打开[https://localhost:8443/](https://localhost:8443/)验证配置是否生效。下图说明https配置成功。
+
+![](../../assets/images/tomcatlocalhttpstest.png)
