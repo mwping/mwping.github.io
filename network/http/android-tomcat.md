@@ -7,9 +7,9 @@
   2. [启动](#1.2)
   3. [停止](#1.3)
 
-* ##### [配置服务器证书](#2)
+* ##### [创建服务器密钥库(keystore)](#2)
   1. [创建keystore](#2.1)
-  2. [查询keystore](#2.2)
+  2. [查看keystore](#2.2)
 
 * ##### [开启https](#3)
   1. [开启8443端口](#3.1)
@@ -21,6 +21,11 @@
   3. [配置tomcat http端口](#4.3)
   4. [配置tomcat https端口](#4.4)
   5. [配置tomcat 域名](#4.5)
+
+* ##### [导出客户端证书](#5)
+  1. [导出证书](#5.1)
+  2. [查看证书](#5.2)
+
 
 <h3 id="1">配置Tomcat</h3>
 
@@ -52,7 +57,7 @@ Tomcat started.
 $ sudo sh shutdown.sh
 ```
 
-<h3 id="2">配置服务器证书</h3>
+<h3 id="2">创建服务器密钥库(keystore)</h3>
 
 <h4 id="2.1">创建keystore</h4> 
 
@@ -91,7 +96,7 @@ CN=mwping.art, OU=mwping.art, O=mwping.art, L=hz, ST=zj, C=ZH是否正确?
 ```
 可以使用同样的方法，在mwpingart.keystore添加一个新的密钥对(alias=mwpingart02)。
 
-<h4 id="2.2">查询keystore</h4> 
+<h4 id="2.2">查看keystore</h4> 
 
 ```
 $ keytool -list -keystore /Users/lixiang/Mwp/Github/mwping/download/tomcat/apache-tomcat-9.0.14/conf/keystore/mwpingart.keystore 
@@ -269,3 +274,39 @@ webapps的域名也需要修改：
 
 ![](../../assets/images/confighttps.png)
 
+<h3 id="5">导出客户端证书</h3>
+
+<h4 id="5.1">导出证书</h4> 
+
+由于之前生成了mwpingart01、mwpingart02两个证书，所以可以导出两份：
+
+```
+$ keytool -export -alias mwpingart01 -file /Users/lixiang/Mwp/Github/mwping/download/tomcat/apache-tomcat-9.0.14/conf/keystore/mwpingart01 -keystore /Users/lixiang/Mwp/Github/mwping/download/tomcat/apache-tomcat-9.0.14/conf/keystore/mwpingart.keystore
+输入密钥库口令:  
+存储在文件 </Users/lixiang/Mwp/Github/mwping/download/tomcat/apache-tomcat-9.0.14/conf/keystore/mwpingart01> 中的证书
+```
+
+<h4 id="5.2">查看证书</h4> 
+```
+$ keytool -printcert -file /Users/lixiang/Mwp/Github/mwping/download/tomcat/apache-tomcat-9.0.14/conf/keystore/mwpingart01 
+所有者: CN=mwping.art, OU=mwping.art, O=mwping.art, L=hz, ST=zj, C=ZH
+发布者: CN=mwping.art, OU=mwping.art, O=mwping.art, L=hz, ST=zj, C=ZH
+序列号: 3e440104
+有效期开始日期: Tue Dec 25 00:04:46 CST 2018, 截止日期: Mon Mar 25 00:04:46 CST 2019
+证书指纹:
+   MD5: 3E:29:F9:5A:84:9D:83:7B:3C:03:00:49:9D:08:47:DD
+   SHA1: 7A:04:F7:BE:20:1B:D2:8E:A7:E8:8C:37:50:93:A1:A0:2F:6F:48:BE
+   SHA256: CA:D2:02:4F:EA:A7:35:94:BC:41:81:19:F8:65:33:C9:18:D9:89:10:AE:8E:F7:76:4A:63:35:86:8E:D2:2F:F9
+   签名算法名称: SHA256withRSA
+   版本: 3
+
+扩展: 
+
+#1: ObjectId: 2.5.29.14 Criticality=false
+SubjectKeyIdentifier [
+KeyIdentifier [
+0000: 93 33 CF 48 86 0C C4 ED   78 30 8C A2 70 A5 B0 BB  .3.H....x0..p...
+0010: 60 1D 2B D7                                        `.+.
+]
+]
+```
