@@ -34,6 +34,7 @@
   1. [直接发起https请求(会失败)](#7.1)
   2. [信任自签署证书](#7.2)
   3. [解决Hostname not verified问题](#7.3)
+  4. [简化自签署证书配置](#7.4)
 
 <h3 id="1">配置Tomcat</h3>
 
@@ -510,7 +511,47 @@ $ keytool -delete -alias mwpingart02 -keystore /Users/lixiang/Mwp/Github/mwping/
             .openRawResource(R.raw.wwwmwpingart01), "wwwmwpingart01");
     URL url = new URL("https://www.mwping.art/test/hello");
     HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
-                    urlConnection.setSSLSocketFactory(sslContext.getSocketFactory());
+    urlConnection.setSSLSocketFactory(sslContext.getSocketFactory());
+    InputStream in = urlConnection.getInputStream();
+    streamToString(in);
+```
+
+<h4 id="7.4">简化自签署证书配置</h4> 
+
+Android提供了以配置文件的形式处理自签署证书的方法：[https://developer.android.com/training/articles/security-config](https://developer.android.com/training/articles/security-config)
+
+1.manifest添加networkSecurityConfig：
+```
+<?xml version="1.0" encoding="utf-8"?>
+<manifest ... >
+    <application android:networkSecurityConfig="@xml/network_security_config"
+                    ... >
+        ...
+    </application>
+</manifest>
+```
+
+2.res/xml/network_security_config.xml文件如下：
+
+```
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <domain-config>
+        <domain includeSubdomains="true">mwping.art</domain>
+        <trust-anchors>
+            <certificates src="@raw/wwwmwpingart01"/>
+        </trust-anchors>
+    </domain-config>
+</network-security-config>
+```
+
+3.简化网络请求代码，跟http请求一样了：
+```java
+//    SSLContext sslContext = createSSLContext(getResources()
+//            .openRawResource(R.raw.wwwmwpingart01), "wwwmwpingart01");
+    URL url = new URL("https://www.mwping.art/test/hello");
+    HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
+//    urlConnection.setSSLSocketFactory(sslContext.getSocketFactory());
     InputStream in = urlConnection.getInputStream();
     streamToString(in);
 ```
