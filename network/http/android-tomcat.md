@@ -26,6 +26,10 @@
   1. [导出证书](#5.1)
   2. [查看证书](#5.2)
 
+* ##### [Android App 测试http请求](#6)
+  1. [编写测试json](#6.1)
+  2. [发起http请求](#6.2)
+
 
 <h3 id="1">配置Tomcat</h3>
 
@@ -310,3 +314,40 @@ KeyIdentifier [
 ]
 ]
 ```
+
+
+<h3 id="6">Android App 测试http请求</h3>
+
+<h4 id="6.1">编写测试json</h4> 
+
+```json
+{
+  "title": "hello",
+  "content": "Welcome to tomcat!"
+}
+```
+将json文件保存为：apache-tomcat-9.0.14/webapps/test/hello
+
+<h4 id="6.2">发起http请求</h4> 
+首先确保Android手机和Tomcat部署的电脑连接到同一个WiFi。网络请求代码很简单(参考：[https://developer.android.com/training/articles/security-ssl](https://developer.android.com/training/articles/security-ssl))：
+```java
+    URL url = new URL("http://www.mwping.art/test/hello");
+    URLConnection urlConnection = url.openConnection();
+    InputStream in = urlConnection.getInputStream();
+    streamToString(in);
+```
+
+为了方便测试，将InputStream转换成String：
+```java
+    private static String streamToString(InputStream inputStream) throws IOException {
+        ByteArrayOutputStream result = new ByteArrayOutputStream();
+        byte[] buffer = new byte[1024];
+        int length;
+        while ((length = inputStream.read(buffer)) != -1) {
+            result.write(buffer, 0, length);
+        }
+        String str = result.toString(StandardCharsets.UTF_8.name());
+        return str;
+    }
+```
+
