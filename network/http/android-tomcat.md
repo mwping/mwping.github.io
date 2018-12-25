@@ -26,10 +26,13 @@
   1. [导出证书](#5.1)
   2. [查看证书](#5.2)
 
-* ##### [Android App 测试http请求](#6)
+* ##### [Android App测试http请求](#6)
   1. [编写测试json](#6.1)
   2. [发起http请求](#6.2)
 
+* ##### [Android App测试https请求](#7)
+  1. [直接发起https请求(会失败)](#7.1)
+  2. [信任自签署证书](#7.2)
 
 <h3 id="1">配置Tomcat</h3>
 
@@ -316,7 +319,7 @@ KeyIdentifier [
 ```
 
 
-<h3 id="6">Android App 测试http请求</h3>
+<h3 id="6">Android App测试http请求</h3>
 
 <h4 id="6.1">编写测试json</h4> 
 
@@ -351,3 +354,89 @@ KeyIdentifier [
     }
 ```
 
+<h3 id="7">Android App测试https请求</h3>
+
+<h4 id="7.1">直接发起https请求(会失败)</h4> 
+
+```java
+    URL url = new URL("https://www.mwping.art/test/hello");
+    URLConnection urlConnection = url.openConnection();
+    InputStream in = urlConnection.getInputStream();
+    streamToString(in);
+```
+
+不出意外的话，这段代码会抛出异常：
+```
+javax.net.ssl.SSLHandshakeException: java.security.cert.CertPathValidatorException: Trust anchor for certification path not found.
+        at com.android.org.conscrypt.OpenSSLSocketImpl.startHandshake(OpenSSLSocketImpl.java:355)
+        at com.android.okhttp.internal.io.RealConnection.connectTls(RealConnection.java:192)
+        at com.android.okhttp.internal.io.RealConnection.connectSocket(RealConnection.java:149)
+        at com.android.okhttp.internal.io.RealConnection.connect(RealConnection.java:112)
+```
+
+<h4 id="7.2">信任自签署证书</h4> 
+
+上面抛出异常是因为服务器证书是自签署的(即使用keytool生成)，而不是由证书颁发机构(Certificate Authorities，简称CA)发放的，解决此异常的方法如下(详见[https://developer.android.com/training/articles/security-ssl](https://developer.android.com/training/articles/security-ssl))：
+
+1. 把apache-tomcat-9.0.14/conf/keystore目录下的mwpingart01、mwpingart02移入Android项目res/raw文件夹下。
+2. 设置SSLSocketFactory：
+```java
+    public static SSLContext createSSLContext(InputStream in, String alias) throws Exception {
+        // Load CAs from an InputStream
+        // (could be from a resource or ByteArrayInputStream or ...)
+        CertificateFactory cf = CertificateFactory.getInstance("X.509");
+        InputStream caInput = new BufferedInputStream(in);
+        Certificate ca;
+        try {
+            ca = cf.generateCertificate(caInput);
+        } finally {
+            caInput.close();
+        }
+        // Create a KeyStore containing our trusted CAs
+        String keyStoreType = KeyStore.getDefaultType();
+        KeyStore keyStore = KeyStore.getInstance(keyStoreType);
+        keyStore.load(null, null);
+        keyStore.setCertificateEntry(alias, ca);
+
+        // Create a TrustManager that trusts the CAs in our KeyStore
+        String tmfAlgorithm = TrustManagerFactory.getDefaultAlgorithm();
+        TrustManagerFactory tmf = TrustManagerFactory.getInstance(tmfAlgorithm);
+        tmf.init(keyStore);
+
+        // Create an SSLContext that uses our TrustManager
+        SSLContext context = SSLContext.getInstance("TLS");
+        context.init(null, tmf.getTrustManagers(), null);
+        return context;
+    }
+```
+3. 改写网络请求代码：
+```java
+    SSLContext sslContext = createSSLContext(getResources()
+            .openRawResource(R.raw.mwpingart02), "mwpingart02");
+    URL url = new URL("https://www.mwping.art/test/hello");
+    HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
+                    urlConnection.setSSLSocketFactory(sslContext.getSocketFactory());
+    // Create an HostnameVerifier that hardwires the expected hostname.
+    // Note that is different than the URL's hostname:
+    // example.com versus example.org
+    HostnameVerifier hostnameVerifier = new HostnameVerifier() {
+        @Override
+        public boolean verify(String hostname, SSLSession session) {
+            HostnameVerifier hv =
+                    HttpsURLConnection.getDefaultHostnameVerifier();
+            return hv.verify("mwping.art", session);
+        }
+    };
+    urlConnection.setHostnameVerifier(hostnameVerifier);
+    InputStream in = urlConnection.getInputStream();
+    streamToString(in);
+```
+hostnameVerifier也需要添加，否则会抛出新的异常：
+```java
+javax.net.ssl.SSLPeerUnverifiedException: Hostname www.mwping.art not verified:
+        certificate: sha1/E4MnuCIFZweIl+S/T/ptKvl1Znw=
+        DN: CN=mwping.art,OU=mwping.art,O=mwping.art,L=hz,ST=zj,C=ZH
+        subjectAltNames: []
+```
+
+**注意**：整个过程mwpingart01证书没有起到任何作用，引入它只是为了验证它无效。如果上面的代码用mwpingart01替换mwpingart02，网络请求会失败，这是因为服务器keystore以最新的为准。
