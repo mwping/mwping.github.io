@@ -47,8 +47,6 @@ layout: default
 **http专题**
 
 * [okhttp指南](./network/http/okhttp-guide.html)
-* [Tomcat配置](./network/http/tomcat-test.html)
-* [Android SSL证书配置](./network/http/android-ssl.html)
 * [基于Tomcat调试Android http/https](./network/http/android-tomcat.html)
 
 #### 工具箱
