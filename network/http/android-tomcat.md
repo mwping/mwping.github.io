@@ -446,7 +446,7 @@ javax.net.ssl.SSLPeerUnverifiedException: Hostname www.mwping.art not verified:
 
 上面提到，如果不加hostnameVerifier会抛异常，究其原因是服务器配置的keystore的\"您的名字与姓氏\"这一项有问题，原值\"mwping.art\"，改成\"www.mwping.art\"即可。
 
-1. 生成新密钥对(重点在于www.mwping.art)：
+1.生成新密钥对(重点在于www.mwping.art)：
 ```
 $ keytool -genkeypair -alias wwwmwpingart01 -keyalg RSA -keystore /Users/lixiang/Mwp/Github/mwping/download/tomcat/apache-tomcat-9.0.14/conf/keystore/mwpingart.keystore
 输入密钥库口令:  
@@ -469,14 +469,14 @@ CN=www.mwping.art, OU=mwp, O=mwp, L=hz, ST=zj, C=ZH是否正确?
   (如果和密钥库口令相同, 按回车):
 ```
 
-2. 导出证书：
+2.导出证书：
 ```
 $ keytool -export -alias wwwmwpingart01 -file /Users/lixiang/Mwp/Github/mwping/download/tomcat/apache-tomcat-9.0.14/conf/keystore/wwwmwpingart01 -keystore /Users/lixiang/Mwp/Github/mwping/download/tomcat/apache-tomcat-9.0.14/conf/keystore/mwpingart.keystore
 输入密钥库口令:  
 存储在文件 </Users/lixiang/Mwp/Github/mwping/download/tomcat/apache-tomcat-9.0.14/conf/keystore/wwwmwpingart01> 中的证书
 ```
 
-3. 查看密钥库条目：
+3.查看密钥库条目：
 ```
 $ keytool -list -keystore /Users/lixiang/Mwp/Github/mwping/download/tomcat/apache-tomcat-9.0.14/conf/keystore/mwpingart.keystore
 输入密钥库口令:  
@@ -494,7 +494,7 @@ wwwmwpingart01, 2018-12-26, PrivateKeyEntry,
 证书指纹 (SHA1): FA:5A:3A:D8:6B:E6:06:DB:EF:6B:3D:C9:EF:8A:83:B9:D1:EB:41:BE
 ```
 
-4. 删除排在wwwmwpingart01前面的证书(mwpingart01、mwpingart02)：
+4.删除排在wwwmwpingart01前面的证书(mwpingart01、mwpingart02)：
 ```
 $ keytool -delete -alias mwpingart01 -keystore /Users/lixiang/Mwp/Github/mwping/download/tomcat/apache-tomcat-9.0.14/conf/keystore/mwpingart.keystore 
 输入密钥库口令:  
@@ -502,9 +502,9 @@ $ keytool -delete -alias mwpingart02 -keystore /Users/lixiang/Mwp/Github/mwping/
 输入密钥库口令: 
 ```
 
-5. tomcat重启
+5.tomcat重启
 
-6. 把证书放入App的res/raw目录，网络请求移除hostnameVerifier相关代码：
+6.把证书放入App的res/raw目录，网络请求移除hostnameVerifier相关代码：
 ```java
     SSLContext sslContext = createSSLContext(getResources()
             .openRawResource(R.raw.wwwmwpingart01), "wwwmwpingart01");
