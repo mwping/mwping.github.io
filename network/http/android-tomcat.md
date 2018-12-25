@@ -33,6 +33,7 @@
 * ##### [Android App测试https请求](#7)
   1. [直接发起https请求(会失败)](#7.1)
   2. [信任自签署证书](#7.2)
+  3. [解决Hostname not verified问题](#7.3)
 
 <h3 id="1">配置Tomcat</h3>
 
@@ -440,3 +441,76 @@ javax.net.ssl.SSLPeerUnverifiedException: Hostname www.mwping.art not verified:
 ```
 
 **注意**：整个过程mwpingart01证书没有起到任何作用，引入它只是为了验证它无效。如果上面的代码用mwpingart01替换mwpingart02，网络请求会失败，这是因为服务器keystore以最新的为准。
+
+<h4 id="7.3">解决Hostname not verified问题</h4> 
+
+上面提到，如果不加hostnameVerifier会抛异常，究其原因是服务器配置的keystore的\"您的名字与姓氏\"这一项有问题，原值\"mwping.art\"，改成\"www.mwping.art\"即可。
+
+1. 生成新密钥对(重点在于www.mwping.art)：
+```
+$ keytool -genkeypair -alias wwwmwpingart01 -keyalg RSA -keystore /Users/lixiang/Mwp/Github/mwping/download/tomcat/apache-tomcat-9.0.14/conf/keystore/mwpingart.keystore
+输入密钥库口令:  
+您的名字与姓氏是什么?
+  [Unknown]:  www.mwping.art
+您的组织单位名称是什么?
+  [Unknown]:  mwp           
+您的组织名称是什么?
+  [Unknown]:  mwp
+您所在的城市或区域名称是什么?
+  [Unknown]:  hz
+您所在的省/市/自治区名称是什么?
+  [Unknown]:  zj
+该单位的双字母国家/地区代码是什么?
+  [Unknown]:  ZH
+CN=www.mwping.art, OU=mwp, O=mwp, L=hz, ST=zj, C=ZH是否正确?
+  [否]:  y
+
+输入 <wwwmwpingart01> 的密钥口令
+  (如果和密钥库口令相同, 按回车):
+```
+
+2. 导出证书：
+```
+$ keytool -export -alias wwwmwpingart01 -file /Users/lixiang/Mwp/Github/mwping/download/tomcat/apache-tomcat-9.0.14/conf/keystore/wwwmwpingart01 -keystore /Users/lixiang/Mwp/Github/mwping/download/tomcat/apache-tomcat-9.0.14/conf/keystore/mwpingart.keystore
+输入密钥库口令:  
+存储在文件 </Users/lixiang/Mwp/Github/mwping/download/tomcat/apache-tomcat-9.0.14/conf/keystore/wwwmwpingart01> 中的证书
+```
+
+3. 查看密钥库条目：
+```
+$ keytool -list -keystore /Users/lixiang/Mwp/Github/mwping/download/tomcat/apache-tomcat-9.0.14/conf/keystore/mwpingart.keystore
+输入密钥库口令:  
+
+密钥库类型: JKS
+密钥库提供方: SUN
+
+您的密钥库包含 3 个条目
+
+mwpingart02, 2018-12-25, PrivateKeyEntry, 
+证书指纹 (SHA1): CF:8E:9F:5D:E5:01:C1:C2:89:2A:94:F4:CE:FB:6B:A0:6B:74:14:58
+mwpingart01, 2018-12-25, PrivateKeyEntry, 
+证书指纹 (SHA1): 7A:04:F7:BE:20:1B:D2:8E:A7:E8:8C:37:50:93:A1:A0:2F:6F:48:BE
+wwwmwpingart01, 2018-12-26, PrivateKeyEntry, 
+证书指纹 (SHA1): FA:5A:3A:D8:6B:E6:06:DB:EF:6B:3D:C9:EF:8A:83:B9:D1:EB:41:BE
+```
+
+4. 删除排在wwwmwpingart01前面的证书(mwpingart01、mwpingart02)：
+```
+$ keytool -delete -alias mwpingart01 -keystore /Users/lixiang/Mwp/Github/mwping/download/tomcat/apache-tomcat-9.0.14/conf/keystore/mwpingart.keystore 
+输入密钥库口令:  
+$ keytool -delete -alias mwpingart02 -keystore /Users/lixiang/Mwp/Github/mwping/download/tomcat/apache-tomcat-9.0.14/conf/keystore/mwpingart.keystore
+输入密钥库口令: 
+```
+
+5. tomcat重启
+
+6. 把证书放入App的res/raw目录，网络请求移除hostnameVerifier相关代码：
+```java
+    SSLContext sslContext = createSSLContext(getResources()
+            .openRawResource(R.raw.wwwmwpingart01), "wwwmwpingart01");
+    URL url = new URL("https://www.mwping.art/test/hello");
+    HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
+                    urlConnection.setSSLSocketFactory(sslContext.getSocketFactory());
+    InputStream in = urlConnection.getInputStream();
+    streamToString(in);
+```
