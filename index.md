@@ -48,6 +48,7 @@ layout: default
 
 * [okhttp指南](./network/http/okhttp-guide.html)
 * [基于Tomcat调试Android http/https](./network/http/android-tomcat.html)
+* [SSL原理探索实战](./network/http/ssl-tls.html)
 
 #### 工具箱
 
@@ -59,3 +60,4 @@ layout: default
 * [命令行助手](./help/quick-cmd.html)
 * [md格式](./index_bak.html)
 * [待办事项](./help/todo.html)
+* [维基百科(中文)](https://zh.wikipedia.org/wiki/Wikipedia:%E9%A6%96%E9%A1%B5)
