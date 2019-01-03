@@ -110,8 +110,28 @@ closed
 
 1. [传输层安全性协议(维基百科)](https://zh.wikipedia.org/wiki/%E5%82%B3%E8%BC%B8%E5%B1%A4%E5%AE%89%E5%85%A8%E6%80%A7%E5%8D%94%E5%AE%9A)
 2. [迪菲-赫尔曼密钥交换](https://zh.wikipedia.org/wiki/%E8%BF%AA%E8%8F%B2-%E8%B5%AB%E7%88%BE%E6%9B%BC%E5%AF%86%E9%91%B0%E4%BA%A4%E6%8F%9B)
+3. [Announcing Keyless SSL™: All the Benefits of CloudFlare Without Having to Turn Over Your Private SSL Keys](https://blog.cloudflare.com/announcing-keyless-ssl-all-the-benefits-of-cloudflare-without-having-to-turn-over-your-private-ssl-keys/)
+4. [Keyless SSL: The Nitty Gritty Technical Details](https://blog.cloudflare.com/keyless-ssl-the-nitty-gritty-technical-details/)
 
 <h4 id="2.2">握手过程</h4>
 
-1. 客户端发\"Client Hello\"消息：你好，我是客户端，这是我生成的随机数；
-2. 服务端发\"Server Hello\"消息：你好，我是服务器，这是我的数字证书、随机数。
+抓包：
+![](../../assets/images/ssl-handshake.png)
+
+描述：
+```
+客户端：服务器你好，我是客户端，我要访问bank.com，这是我支持的加密算法列表和我的随机数；
+
+服务器：客户端你好，我是服务器，这是我的数字证书，同时为了证明我有证书私钥，我把截至目前为止所有消息的签名发你了。
+我已经从你支持的加密算法里面选好了一个算法，我也有1个随机数。另外，这是Diffie-Hellman服务端Pubkey，你计算pre-master secret要用到。
+
+客户端：你好，你的证书我收到了。经过我的手机里面预装的知名CA机构的公钥解密，你的证书确实是权威CA机构签发给bank.com的。
+同时你发的签名，我用你证书里面的公钥解密成功，确认你有证书私钥，看来你确实是bank.com服务器。
+另外，这是Diffie-Hellman客户端Pubkey。你发的Pubkey我收到了，现在我同时拥有了客户端、服务器的Pubkey，已经计算出了pre-master secret，加上我自己的随机数、服务端的随机数，已经算出来了共享密钥，现在我用这个共享密钥加密一个握手消息给你，你看看能不能解开；
+
+服务器：你的加密握手消息我收到了，你的Pubkey我也收到了，现在我也能计算出pre-master secret，加上我们两个的随机数，得出了给你一样的共享密钥。你发的加密握手消息我能解开，我给你也发一个加密的握手消息，你也试试能不能解开。
+
+客户端：你发的加密握手消息我也能解开。现在我们可以正式开始会话了，这是我的Application Data，经过了共享密钥加密。
+
+服务器：这是我的Application Data，是对你的回复，也经过了共享密钥加密。
+```
