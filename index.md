@@ -18,6 +18,8 @@ layout: default
 * [组件化](./android/componentization.html)
 * [电池寿命](./android/battery_life.html)
 * [安全](./android/security.html)
+* [Gradle插件开发与发布指南](./android/gradle-plugin.html)
+* [ASM指南](./android/asm.html)
 
 **adb专题**
 
