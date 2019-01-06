@@ -73,7 +73,7 @@ javac编译成.class，javap -v查看第二个类的字节码：
 ```
 
 生成`MwpLogger.d`静态方法调用的字节码：
-```
+```java
     private void callLog() {
         mv.visitLdcInsn("MwpLog::" + className.substring(className.lastIndexOf("/") + 1));
         mv.visitLdcInsn(methodName + " execute");
@@ -90,7 +90,7 @@ visitMethodInsn的第4个参数值是\"(Ljava/lang/String;Ljava/lang/String;J)V\
 ![](../assets/images/testlog.png)
 
 编译完成之后，把第一个类的.class文件拖到Android Studio查看，生成字节码成功：
-```
+```java
 public class AsmTest {
     public AsmTest() {
     }
