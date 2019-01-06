@@ -112,6 +112,16 @@ public class AsmTest {
         setContentView(R.layout.activity_main);
     }
 ```
+Android Studio查看MainActivity.class：
+```java
+    @MwpLog
+    protected void onCreate(Bundle savedInstanceState) {
+        long var2 = System.currentTimeMillis();
+        super.onCreate(savedInstanceState);
+        this.setContentView(2131427360);
+        MwpLogger.d("MwpLog::MainActivity", "onCreate execute", var2);
+    }
+```
 打开App，查看Log：
 ```
 D/MwpLog::MainActivity:  
