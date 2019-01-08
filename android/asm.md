@@ -41,7 +41,9 @@ compile 'org.ow2.asm:asm-all:6.0_BETA'
 3.编写一个测试类：
 ```java
 public class AsmTest {
-    public void testLog() {
+    @MwpLog
+    public void testLog(int anInt, long aLong, boolean aBoolean, float aFloat,
+                        double aDouble, String aString, LogObject object) {
     }
 }
 ```
@@ -50,46 +52,10 @@ build项目，找到AsmTest.class:
 
 4.使用ASMifier:
 ```
-$ java -classpath /Users/lixiang/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-all/6.0_BETA/535f141f6c8fc65986a3469839a852a3266d1025/asm-all-6.0_BETA.jar:asm-util.jar \
-> org.objectweb.asm.util.ASMifier \
-> /Users/lixiang/Mwp/Github/TheMatrix/TheMatrixApp/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/github/mwping/lordhelperapp/util/AsmTest.class
-package asm.com.github.mwping.lordhelperapp.util;
-import java.util.*;
-import org.objectweb.asm.*;
-public class AsmTestDump implements Opcodes {
-
-public static byte[] dump () throws Exception {
-
-ClassWriter cw = new ClassWriter(0);
-FieldVisitor fv;
-MethodVisitor mv;
-AnnotationVisitor av0;
-
-cw.visit(V1_7, ACC_PUBLIC + ACC_SUPER, "com/github/mwping/lordhelperapp/util/AsmTest", null, "java/lang/Object", null);
-
-{
-mv = cw.visitMethod(ACC_PUBLIC, "<init>", "()V", null, null);
-mv.visitCode();
-mv.visitVarInsn(ALOAD, 0);
-mv.visitMethodInsn(INVOKESPECIAL, "java/lang/Object", "<init>", "()V", false);
-mv.visitInsn(RETURN);
-mv.visitMaxs(1, 1);
-mv.visitEnd();
-}
-{
-mv = cw.visitMethod(ACC_PUBLIC, "testLog", "()V", null, null);
-mv.visitCode();
-mv.visitInsn(RETURN);
-mv.visitMaxs(0, 1);
-mv.visitEnd();
-}
-cw.visitEnd();
-
-return cw.toByteArray();
-}
-}
+java -classpath /Users/lixiang/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-all/6.0_BETA/535f141f6c8fc65986a3469839a852a3266d1025/asm-all-6.0_BETA.jar:asm-util.jar \
+org.objectweb.asm.util.ASMifier \
+/Users/lixiang/Mwp/Github/TheMatrix/TheMatrixApp/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/github/mwping/lordhelperapp/util/AsmTest.class
 ```
-
 输出按java格式化：
 ```java
 package asm.com.github.mwping.lordhelperapp.util;
@@ -119,10 +85,14 @@ public class AsmTestDump implements Opcodes {
             mv.visitEnd();
         }
         {
-            mv = cw.visitMethod(ACC_PUBLIC, "testLog", "()V", null, null);
+            mv = cw.visitMethod(ACC_PUBLIC, "testLog", "(IJZFDLjava/lang/String;Lcom/github/mwping/lordhelperapp/util/LogObject;)V", null, null);
+            {
+                av0 = mv.visitAnnotation("Lcom/github/mwping/asm/annotation/MwpLog;", false);
+                av0.visitEnd();
+            }
             mv.visitCode();
             mv.visitInsn(RETURN);
-            mv.visitMaxs(0, 1);
+            mv.visitMaxs(0, 10);
             mv.visitEnd();
         }
         cw.visitEnd();
@@ -134,12 +104,20 @@ public class AsmTestDump implements Opcodes {
 
 <h4 id="2.3">为方法生成字节码</h4>
 
-修改类AsmTest.java，添加两行代码:
+修改类AsmTest.java:
 ```java
 public class AsmTest {
-    public void testLog() {
+    @MwpLog
+    public void testLog(int anInt, long aLong, boolean aBoolean, float aFloat,
+                        double aDouble, String aString, LogObject object) {
         StringBuilder builder = new StringBuilder();
-        builder.append("testLog");
+        builder.append(anInt);
+        builder.append(aLong);
+        builder.append(aBoolean);
+        builder.append(aFloat);
+        builder.append(aDouble);
+        builder.append(aString);
+        builder.append(object);
     }
 }
 ```
@@ -172,18 +150,46 @@ public class AsmTestDump implements Opcodes {
             mv.visitEnd();
         }
         {
-            mv = cw.visitMethod(ACC_PUBLIC, "testLog", "()V", null, null);
+            mv = cw.visitMethod(ACC_PUBLIC, "testLog", "(IJZFDLjava/lang/String;Lcom/github/mwping/lordhelperapp/util/LogObject;)V", null, null);
+            {
+                av0 = mv.visitAnnotation("Lcom/github/mwping/asm/annotation/MwpLog;", false);
+                av0.visitEnd();
+            }
             mv.visitCode();
             mv.visitTypeInsn(NEW, "java/lang/StringBuilder");
             mv.visitInsn(DUP);
             mv.visitMethodInsn(INVOKESPECIAL, "java/lang/StringBuilder", "<init>", "()V", false);
-            mv.visitVarInsn(ASTORE, 1);
-            mv.visitVarInsn(ALOAD, 1);
-            mv.visitLdcInsn("testLog");
+            mv.visitVarInsn(ASTORE, 10);
+            mv.visitVarInsn(ALOAD, 10);
+            mv.visitVarInsn(ILOAD, 1);
+            mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(I)Ljava/lang/StringBuilder;", false);
+            mv.visitInsn(POP);
+            mv.visitVarInsn(ALOAD, 10);
+            mv.visitVarInsn(LLOAD, 2);
+            mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(J)Ljava/lang/StringBuilder;", false);
+            mv.visitInsn(POP);
+            mv.visitVarInsn(ALOAD, 10);
+            mv.visitVarInsn(ILOAD, 4);
+            mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Z)Ljava/lang/StringBuilder;", false);
+            mv.visitInsn(POP);
+            mv.visitVarInsn(ALOAD, 10);
+            mv.visitVarInsn(FLOAD, 5);
+            mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(F)Ljava/lang/StringBuilder;", false);
+            mv.visitInsn(POP);
+            mv.visitVarInsn(ALOAD, 10);
+            mv.visitVarInsn(DLOAD, 6);
+            mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(D)Ljava/lang/StringBuilder;", false);
+            mv.visitInsn(POP);
+            mv.visitVarInsn(ALOAD, 10);
+            mv.visitVarInsn(ALOAD, 8);
             mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/String;)Ljava/lang/StringBuilder;", false);
             mv.visitInsn(POP);
+            mv.visitVarInsn(ALOAD, 10);
+            mv.visitVarInsn(ALOAD, 9);
+            mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/Object;)Ljava/lang/StringBuilder;", false);
+            mv.visitInsn(POP);
             mv.visitInsn(RETURN);
-            mv.visitMaxs(2, 2);
+            mv.visitMaxs(3, 11);
             mv.visitEnd();
         }
         cw.visitEnd();
@@ -194,9 +200,10 @@ public class AsmTestDump implements Opcodes {
 ```
 
 使用diff工具查看两次输出的区别：
+
 ![](../assets/images/asm-diff.png)
 
-把AsmTest.java还原。为了特殊单独处理，这次加上了@MwpLog标记：
+把AsmTest.java还原:
 ```java
 public class AsmTest {
     @MwpLog
@@ -206,19 +213,7 @@ public class AsmTest {
 }
 ```
 
-build项目，查看AsmTest.class，testLog为空方法：
-```java
-public class AsmTest {
-    public AsmTest() {
-    }
-
-    @MwpLog
-    public void testLog() {
-    }
-}
-```
-
-重写AdviceAdapter以下几个方法，其中onMethodExit内容均从上面的diff部分拷贝过来，忽略`mv.visitMaxs(2, 2)`这一行。
+重写AdviceAdapter以下几个方法，其中onMethodExit内容均从上面的diff部分拷贝过来:
 ```java
     @Override
     public AnnotationVisitor visitAnnotation(String desc, boolean visible) {
@@ -241,10 +236,34 @@ public class AsmTest {
             mv.visitTypeInsn(NEW, "java/lang/StringBuilder");
             mv.visitInsn(DUP);
             mv.visitMethodInsn(INVOKESPECIAL, "java/lang/StringBuilder", "<init>", "()V", false);
-            mv.visitVarInsn(ASTORE, 1);
-            mv.visitVarInsn(ALOAD, 1);
-            mv.visitLdcInsn("testLog");
+            mv.visitVarInsn(ASTORE, 10);
+            mv.visitVarInsn(ALOAD, 10);
+            mv.visitVarInsn(ILOAD, 1);
+            mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(I)Ljava/lang/StringBuilder;", false);
+            mv.visitInsn(POP);
+            mv.visitVarInsn(ALOAD, 10);
+            mv.visitVarInsn(LLOAD, 2);
+            mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(J)Ljava/lang/StringBuilder;", false);
+            mv.visitInsn(POP);
+            mv.visitVarInsn(ALOAD, 10);
+            mv.visitVarInsn(ILOAD, 4);
+            mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Z)Ljava/lang/StringBuilder;", false);
+            mv.visitInsn(POP);
+            mv.visitVarInsn(ALOAD, 10);
+            mv.visitVarInsn(FLOAD, 5);
+            mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(F)Ljava/lang/StringBuilder;", false);
+            mv.visitInsn(POP);
+            mv.visitVarInsn(ALOAD, 10);
+            mv.visitVarInsn(DLOAD, 6);
+            mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(D)Ljava/lang/StringBuilder;", false);
+            mv.visitInsn(POP);
+            mv.visitVarInsn(ALOAD, 10);
+            mv.visitVarInsn(ALOAD, 8);
             mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/String;)Ljava/lang/StringBuilder;", false);
+            mv.visitInsn(POP);
+            mv.visitVarInsn(ALOAD, 10);
+            mv.visitVarInsn(ALOAD, 9);
+            mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/Object;)Ljava/lang/StringBuilder;", false);
             mv.visitInsn(POP);
         }
     }
@@ -257,9 +276,15 @@ public class AsmTest {
     }
 
     @MwpLog
-    public void testLog() {
-        StringBuilder var1 = new StringBuilder();
-        var1.append("testLog");
+    public void testLog(int anInt, long aLong, boolean aBoolean, float aFloat, double aDouble, String aString, LogObject object) {
+        StringBuilder var10 = new StringBuilder();
+        var10.append(anInt);
+        var10.append(aLong);
+        var10.append(aBoolean);
+        var10.append(aFloat);
+        var10.append(aDouble);
+        var10.append(aString);
+        var10.append(object);
     }
 }
 ```
