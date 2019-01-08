@@ -5,91 +5,208 @@
 * ##### [关于ASM](#1)
   1. [官网地址](#1.1)
 
-* ##### [使用方法](#2)
-  1. [打印Log示例](#2.1)
+* ##### [打印Log示例](#2)
+  1. [查看ASMifier文档](#2.1)
+  2. [使用ASMifier](#2.2)
+  3. [为方法生成字节码](#2.3)
 
 <h3 id="1">关于ASM</h3>
 
 <h4 id="1.1">官网地址</h4> 
 [https://asm.ow2.io/index.html](https://asm.ow2.io/index.html)
 
-<h3 id="2">使用方法</h3>
+<h3 id="2">打印Log示例</h3>
 
-<h4 id="2.1">打印Log示例</h4>
+<h4 id="2.1">查看ASMifier文档</h4>
 
-编写两个类，一个期望自动生成Log，一个手动：
+文档连接：[https://asm.ow2.io/asm4-guide.pdf](https://asm.ow2.io/asm4-guide.pdf)，使用方法：
+```
+java -classpath asm.jar:asm-util.jar \
+org.objectweb.asm.util.ASMifier \
+java.lang.Runnable
+```
+
+<h4 id="2.2">使用ASMifier</h4>
+
+1.依赖asm-all库：
+```
+compile 'org.ow2.asm:asm-all:6.0_BETA'
+```
+
+2.找到asm.jar，路径一般为：
+```
+/Users/lixiang/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-all/6.0_BETA/535f141f6c8fc65986a3469839a852a3266d1025/asm-all-6.0_BETA.jar
+```
+
+3.编写一个测试类：
+```java
+public class AsmTest {
+    public void testLog() {
+    }
+}
+```
+build项目，找到AsmTest.class:
+> /Users/lixiang/Mwp/Github/TheMatrix/TheMatrixApp/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/github/mwping/lordhelperapp/util/AsmTest.class
+
+4.使用ASMifier:
+```
+$ java -classpath /Users/lixiang/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-all/6.0_BETA/535f141f6c8fc65986a3469839a852a3266d1025/asm-all-6.0_BETA.jar:asm-util.jar \
+> org.objectweb.asm.util.ASMifier \
+> /Users/lixiang/Mwp/Github/TheMatrix/TheMatrixApp/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/github/mwping/lordhelperapp/util/AsmTest.class
+package asm.com.github.mwping.lordhelperapp.util;
+import java.util.*;
+import org.objectweb.asm.*;
+public class AsmTestDump implements Opcodes {
+
+public static byte[] dump () throws Exception {
+
+ClassWriter cw = new ClassWriter(0);
+FieldVisitor fv;
+MethodVisitor mv;
+AnnotationVisitor av0;
+
+cw.visit(V1_7, ACC_PUBLIC + ACC_SUPER, "com/github/mwping/lordhelperapp/util/AsmTest", null, "java/lang/Object", null);
+
+{
+mv = cw.visitMethod(ACC_PUBLIC, "<init>", "()V", null, null);
+mv.visitCode();
+mv.visitVarInsn(ALOAD, 0);
+mv.visitMethodInsn(INVOKESPECIAL, "java/lang/Object", "<init>", "()V", false);
+mv.visitInsn(RETURN);
+mv.visitMaxs(1, 1);
+mv.visitEnd();
+}
+{
+mv = cw.visitMethod(ACC_PUBLIC, "testLog", "()V", null, null);
+mv.visitCode();
+mv.visitInsn(RETURN);
+mv.visitMaxs(0, 1);
+mv.visitEnd();
+}
+cw.visitEnd();
+
+return cw.toByteArray();
+}
+}
+```
+
+输出按java格式化：
+```java
+package asm.com.github.mwping.lordhelperapp.util;
+
+import java.util.*;
+
+import org.objectweb.asm.*;
+
+public class AsmTestDump implements Opcodes {
+
+    public static byte[] dump() throws Exception {
+
+        ClassWriter cw = new ClassWriter(0);
+        FieldVisitor fv;
+        MethodVisitor mv;
+        AnnotationVisitor av0;
+
+        cw.visit(V1_7, ACC_PUBLIC + ACC_SUPER, "com/github/mwping/lordhelperapp/util/AsmTest", null, "java/lang/Object", null);
+
+        {
+            mv = cw.visitMethod(ACC_PUBLIC, "<init>", "()V", null, null);
+            mv.visitCode();
+            mv.visitVarInsn(ALOAD, 0);
+            mv.visitMethodInsn(INVOKESPECIAL, "java/lang/Object", "<init>", "()V", false);
+            mv.visitInsn(RETURN);
+            mv.visitMaxs(1, 1);
+            mv.visitEnd();
+        }
+        {
+            mv = cw.visitMethod(ACC_PUBLIC, "testLog", "()V", null, null);
+            mv.visitCode();
+            mv.visitInsn(RETURN);
+            mv.visitMaxs(0, 1);
+            mv.visitEnd();
+        }
+        cw.visitEnd();
+
+        return cw.toByteArray();
+    }
+}
+```
+
+<h4 id="2.3">为方法生成字节码</h4>
+
+修改类AsmTest.java，添加两行代码:
+```java
+public class AsmTest {
+    public void testLog() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("testLog");
+    }
+}
+```
+重新执行命令，获取格式化结果：
+```java
+package asm.com.github.mwping.lordhelperapp.util;
+
+import java.util.*;
+
+import org.objectweb.asm.*;
+
+public class AsmTestDump implements Opcodes {
+
+    public static byte[] dump() throws Exception {
+
+        ClassWriter cw = new ClassWriter(0);
+        FieldVisitor fv;
+        MethodVisitor mv;
+        AnnotationVisitor av0;
+
+        cw.visit(V1_7, ACC_PUBLIC + ACC_SUPER, "com/github/mwping/lordhelperapp/util/AsmTest", null, "java/lang/Object", null);
+
+        {
+            mv = cw.visitMethod(ACC_PUBLIC, "<init>", "()V", null, null);
+            mv.visitCode();
+            mv.visitVarInsn(ALOAD, 0);
+            mv.visitMethodInsn(INVOKESPECIAL, "java/lang/Object", "<init>", "()V", false);
+            mv.visitInsn(RETURN);
+            mv.visitMaxs(1, 1);
+            mv.visitEnd();
+        }
+        {
+            mv = cw.visitMethod(ACC_PUBLIC, "testLog", "()V", null, null);
+            mv.visitCode();
+            mv.visitTypeInsn(NEW, "java/lang/StringBuilder");
+            mv.visitInsn(DUP);
+            mv.visitMethodInsn(INVOKESPECIAL, "java/lang/StringBuilder", "<init>", "()V", false);
+            mv.visitVarInsn(ASTORE, 1);
+            mv.visitVarInsn(ALOAD, 1);
+            mv.visitLdcInsn("testLog");
+            mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/String;)Ljava/lang/StringBuilder;", false);
+            mv.visitInsn(POP);
+            mv.visitInsn(RETURN);
+            mv.visitMaxs(2, 2);
+            mv.visitEnd();
+        }
+        cw.visitEnd();
+
+        return cw.toByteArray();
+    }
+}
+```
+
+使用diff工具查看两次输出的区别：
+![](../assets/images/asm-diff.png)
+
+把AsmTest.java还原。为了特殊单独处理，这次加上了@MwpLog标记：
 ```java
 public class AsmTest {
     @MwpLog
     public void testLog() {
-    }
-}
-```
-```java
-public class AsmTest2 {
-    public void testLog() {
-        long startTime = System.currentTimeMillis();
-        MwpLogger.d("MwpLog::AsmTest2", "emptyFunc", startTime);
+
     }
 }
 ```
 
-javac编译成.class，javap -v查看第二个类的字节码：
-```
-  public void testLog();
-    descriptor: ()V
-    flags: ACC_PUBLIC
-    Code:
-      stack=4, locals=3, args_size=1
-         0: invokestatic  #2                  // Method java/lang/System.currentTimeMillis:()J
-         3: lstore_1
-         4: ldc           #3                  // String MwpLog::AsmTest2
-         6: ldc           #4                  // String emptyFunc
-         8: lload_1
-         9: invokestatic  #5                  // Method com/github/mwping/asm/util/MwpLogger.d:(Ljava/lang/String;Ljava/lang/String;J)V
-        12: return
-```
-
-生成`long startTime = System.currentTimeMillis();`的字节码：
-```java
-    private int visitCurrentTimeMillis() {
-        try {
-            Class<System> cls = System.class;
-            Method method = cls.getMethod("currentTimeMillis");
-            int id = newLocal(Type.LONG_TYPE);
-            mv.visitMethodInsn(INVOKESTATIC,
-                    Type.getInternalName(cls),
-                    method.getName(),
-                    Type.getMethodDescriptor(method),
-                    false
-            );
-            mv.visitIntInsn(LSTORE, id);
-            return id;
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        }
-        return -1;
-    }
-```
-
-生成`MwpLogger.d`静态方法调用的字节码：
-```java
-    private void callLog() {
-        mv.visitLdcInsn("MwpLog::" + className.substring(className.lastIndexOf("/") + 1));
-        mv.visitLdcInsn(methodName + " execute");
-        mv.visitVarInsn(LLOAD, startTimeId);
-        mv.visitMethodInsn(INVOKESTATIC,
-                TypeUtils.getInternalName("com.github.mwping.asm.util.MwpLogger"),
-                "d",
-                "(Ljava/lang/String;Ljava/lang/String;J)V",
-                false
-        );
-    }
-```
-visitMethodInsn的第4个参数值是\"(Ljava/lang/String;Ljava/lang/String;J)V\"，手动拼很麻烦，可以从上面的javap -v输出的内容里面拷贝：
-![](../assets/images/testlog.png)
-
-编译完成之后，把第一个类的.class文件拖到Android Studio查看，生成字节码成功：
+build项目，查看AsmTest.class，testLog为空方法：
 ```java
 public class AsmTest {
     public AsmTest() {
@@ -97,36 +214,54 @@ public class AsmTest {
 
     @MwpLog
     public void testLog() {
-        long var1 = System.currentTimeMillis();
-        MwpLogger.d("MwpLog::AsmTest", "testLog execute", var1);
     }
 }
 ```
 
-在MainActivity的onCreate方法打上MwpLog注解进行测试：
+重写AdviceAdapter以下几个方法，其中onMethodExit内容均从上面的diff部分拷贝过来，忽略`mv.visitMaxs(2, 2)`这一行。
 ```java
-    @MwpLog
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    public AnnotationVisitor visitAnnotation(String desc, boolean visible) {
+        if (desc.contains("MwpLog")) {
+            enableLog = true;
+        }
+        return super.visitAnnotation(desc, visible);
+    }
+
+    @Override
+    protected void onMethodEnter() {
+        if (enableLog) {
+
+        }
+    }
+
+    @Override
+    protected void onMethodExit(int opcode) {
+        if (enableLog) {
+            mv.visitTypeInsn(NEW, "java/lang/StringBuilder");
+            mv.visitInsn(DUP);
+            mv.visitMethodInsn(INVOKESPECIAL, "java/lang/StringBuilder", "<init>", "()V", false);
+            mv.visitVarInsn(ASTORE, 1);
+            mv.visitVarInsn(ALOAD, 1);
+            mv.visitLdcInsn("testLog");
+            mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/String;)Ljava/lang/StringBuilder;", false);
+            mv.visitInsn(POP);
+        }
     }
 ```
-Android Studio查看MainActivity.class：
+
+build项目，重新查看AsmTest.class:
 ```java
-    @MwpLog
-    protected void onCreate(Bundle savedInstanceState) {
-        long var2 = System.currentTimeMillis();
-        super.onCreate(savedInstanceState);
-        this.setContentView(2131427360);
-        MwpLogger.d("MwpLog::MainActivity", "onCreate execute", var2);
+public class AsmTest {
+    public AsmTest() {
     }
+
+    @MwpLog
+    public void testLog() {
+        StringBuilder var1 = new StringBuilder();
+        var1.append("testLog");
+    }
+}
 ```
-打开App，查看Log：
-```
-D/MwpLog::MainActivity:  
-    ┌─────────────────────────────────────────────────
-    │onCreate execute
-    │cost time: 113
-    └─────────────────────────────────────────────────
-```
+
+字节码生成成功！
