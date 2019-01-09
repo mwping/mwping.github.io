@@ -11,7 +11,7 @@
 
 [Configure your build](https://developer.android.com/studio/build/)
 
-<img src="../assets/images/build-process_2x.png" width="50%">
+![](../assets/images/build-process_2x.png)
 
 (原图地址:https://developer.android.com/images/tools/studio/build-process_2x.png)
 
