@@ -26,7 +26,7 @@ layout: default
 
 **App构建**
 
-* [App构建流程](./android/build-app.html)
+* [App构建流程分析](./android/build-app.html)
 
 **adb专题**
 
