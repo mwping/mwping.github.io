@@ -24,6 +24,10 @@ layout: default
 
 * [ASM指南](./android/asm.html)
 
+**App构建**
+
+* [App构建流程](./android/build-app.html)
+
 **adb专题**
 
 * [adb调试](./android/adb.html)
