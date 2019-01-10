@@ -24,13 +24,21 @@
 
 <h4 id="2.1">配置源码</h4> 
 
-新建项目，添加依赖:
+新建项目，新建buildSrc模块，buildSrc/build.gradle内容如下：
 ```
+apply plugin: 'groovy'
+apply plugin: 'maven'
+
+repositories {
+    jcenter()
+    mavenCentral()
+    google()
+}
+
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
-    implementation 'com.android.tools.build:gradle:3.2.1' // add this line
+    compile gradleApi() //gradle sdk
+    compile localGroovy() //groovy sdk
+    compile 'com.android.tools.build:gradle:3.2.1'
 }
 ```
 sync gradle之后效果如下：
