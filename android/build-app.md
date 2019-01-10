@@ -8,6 +8,7 @@
 * ##### [流程分析](#2)
   1. [配置源码](#2.1)
   2. [找到插件主类](#2.2)
+  3. [自定义AppPlugin](#2.3)
 
 <h3 id="1">构建流程</h3>
 
@@ -60,4 +61,48 @@ apply plugin: 'com.android.application'
 public class AppPlugin extends AbstractAppPlugin {
     // ...
 }
+```
+
+<h4 id="2.3">自定义AppPlugin</h4> 
+1.创建插件类：
+
+```java
+class MyAppPlugin extends AppPlugin {
+    MwpLogger logger;
+
+    @Inject
+    MyAppPlugin(ToolingModelBuilderRegistry registry) {
+        super(registry)
+    }
+
+    @Override
+    void apply(Project project) {
+        super.apply(project)
+        logger = new MwpLogger(project);
+        logger.error(project.getName() + " apply MyAppPlugin!")
+    }
+}
+```
+
+2.使用自定义插件：
+
+把app/build.gradle中的
+```
+apply plugin: 'com.android.application'
+```
+替换为
+```
+import com.github.mwping.buildsrc.MyAppPlugin
+
+apply plugin: MyAppPlugin
+```
+
+3.查看build日志：
+```
+┌─────────────────────────────────────────────────
+│ app apply MyAppPlugin!
+└─────────────────────────────────────────────────
+:app:checkDebugClasspath UP-TO-DATE
+:app:preBuild UP-TO-DATE
+:app:preDebugBuild UP-TO-DATE
 ```
