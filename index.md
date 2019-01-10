@@ -19,6 +19,7 @@ layout: default
 * [电池寿命](./android/battery_life.html)
 * [安全](./android/security.html)
 * [Gradle插件开发与发布指南](./android/gradle-plugin.html)
+* [Gradle语法实战](./android/gradle-dsl.html)
 
 **字节码系列**
 
