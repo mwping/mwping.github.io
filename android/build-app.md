@@ -12,6 +12,7 @@
 
 * ##### [构建流程分析](#3)
   1. [AS运行按钮发生了什么？](#3.1)
+  2. [跟踪Task](#3.2)
 
 <h3 id="1">构建流程简介</h3>
 
@@ -82,7 +83,13 @@ class MyAppPlugin extends AppPlugin {
     void apply(Project project) {
         super.apply(project)
         logger = new MwpLogger(project);
-        logger.error(project.getName() + " apply MyAppPlugin!")
+        project.afterEvaluate {
+            project.getTasks().each { Task t ->
+                t.doFirst {
+                    logger.error("Task begin:" + t.getName() + " getClass:" + t.getClass())
+                }
+            }
+        }
     }
 }
 ```
@@ -169,3 +176,4 @@ $ adb push
 $ adb shell pm install
 $ adb shell am start
 ```
+<h4 id="3.2">跟踪Task</h4> 
