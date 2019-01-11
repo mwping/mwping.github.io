@@ -12,7 +12,6 @@
 
 * ##### [构建流程分析](#3)
   1. [AS运行按钮发生了什么？](#3.1)
-  2. [跟踪Task](#3.2)
 
 <h3 id="1">构建流程简介</h3>
 
@@ -176,4 +175,3 @@ $ adb push
 $ adb shell pm install
 $ adb shell am start
 ```
-<h4 id="3.2">跟踪Task</h4> 

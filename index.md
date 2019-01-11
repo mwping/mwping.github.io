@@ -20,6 +20,7 @@ layout: default
 * [安全](./android/security.html)
 * [Gradle插件开发与发布指南](./android/gradle-plugin.html)
 * [Gradle语法实战](./android/gradle-dsl.html)
+* [App生命周期](./android/app-lifecycle.html)
 
 **字节码系列**
 
