@@ -22,6 +22,10 @@ layout: default
 * [Gradle语法实战](./android/gradle-dsl.html)
 * [App生命周期](./android/app-lifecycle.html)
 
+**绘制原理系列**
+
+* [图解View绘制原理(软件渲染篇)](./android/drawSoftware.html)
+
 **字节码系列**
 
 * [ASM指南](./android/asm.html)
