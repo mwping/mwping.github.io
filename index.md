@@ -8,6 +8,8 @@ layout: default
 
 * [图解draw流程(软件渲染篇)](./android/drawSoftware.html)
 
+* [图解draw流程(硬件渲染篇)](./android/drawSoftware.html)
+
 #### Java
 
 * [理解Java中的锁概念](./java/java_lock.html)

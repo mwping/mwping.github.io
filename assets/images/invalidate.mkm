@@ -1,9 +1,17 @@
 <MKM version="2.0" minAppVer="2.0.0" imageFileUrl="">
   <Marks>
     <RectMark x="100" y="476" color="255" offsetX="300" offsetY="300"/>
-    <LengthMark x="242" y="0.5" color="16711680" length="476" direction="3"/>
-    <LengthMark x="287" y="0" color="16711680" length="776" direction="3"/>
-    <LengthMark x="1" y="546" color="16711680" length="100" direction="12"/>
-    <LengthMark x="0" y="786" color="16711680" length="400" direction="12"/>
+    <RectMark x="0" y="0" color="16711680" offsetX="1080" offsetY="1920"/>
+    <TextMark x="149" y="645" color="16711680" offsetX="25" offsetY="10" defaultDirection="9" direction="9" textMaxWidth="362" text="Canvas6&#xD;所属View：最底层View&#xD;范围：50,50-350,350"/>
+    <TextMark x="59" y="211" color="16711680" offsetX="25" offsetY="10" defaultDirection="9" direction="9" textMaxWidth="368" text="Canvas1&#xD;所属View：DecorView&#xD;范围：0,0-1080,1920&#xD;"/>
+    <TextMark x="431" y="274" color="16711680" offsetX="25" offsetY="10" defaultDirection="9" direction="9" textMaxWidth="361" text="Canvas2&#xD;所属View：LinearLayout(状态栏+content)&#xD;范围：0,0-1080,1710"/>
+    <LengthMark x="766" y="0" color="16711680" length="126" direction="3"/>
+    <TextMark x="620" y="402" color="16711680" offsetX="25" offsetY="10" defaultDirection="9" direction="9" textMaxWidth="362" text="Canvas3&#xD;所属View：FrameLayout(content)&#xD;范围：0,126-1080,1710"/>
+    <LengthMark x="284" y="126.5" color="16711680" length="300" direction="3"/>
+    <LengthMark x="0" y="543" color="16711680" length="50" direction="12"/>
+    <TextMark x="621" y="530" color="16711680" offsetX="25" offsetY="10" defaultDirection="9" direction="9" textMaxWidth="362" text="Canvas4&#xD;所属View：FrameLayout(自定义视图顶级布局)&#xD;范围：0,0-1080,1584"/>
+    <TextMark x="521" y="719" color="16711680" offsetX="25" offsetY="10" defaultDirection="9" direction="9" textMaxWidth="362" text="Canvas5&#xD;所属View：FrameLayout(箭头所指View)&#xD;范围：50,300-550,850"/>
+    <LengthMark x="484" y="1710" color="16711680" length="210" direction="3"/>
+    <RectMark x="50" y="426" color="16711680" offsetX="500" offsetY="550"/>
   </Marks>
 </MKM>
