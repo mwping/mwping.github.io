@@ -4,6 +4,10 @@ layout: default
 
 ## 计算机技术实战
 
+#### 图解View绘制原理
+
+* [图解draw流程(软件渲染篇)](./android/drawSoftware.html)
+
 #### Java
 
 * [理解Java中的锁概念](./java/java_lock.html)
@@ -21,10 +25,6 @@ layout: default
 * [Gradle插件开发与发布指南](./android/gradle-plugin.html)
 * [Gradle语法实战](./android/gradle-dsl.html)
 * [App生命周期](./android/app-lifecycle.html)
-
-**绘制原理系列**
-
-* [图解View绘制原理(软件渲染篇)](./android/drawSoftware.html)
 
 **字节码系列**
 
