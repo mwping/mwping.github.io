@@ -7,6 +7,8 @@
 
 * ##### [重绘View树](#2)
 
+* ##### [部分重绘](#3)
+
 <h3 id="1">确认RenderNode上下左右坐标</h3>
 
 layout阶段完成：
@@ -113,3 +115,7 @@ View.java:
 4. Canvas4包含了Canvas5的绘制命令；
 5. Canvas5包含了Canvas6的绘制命令；
 6. 递推可知Canvas1包含了整个View树的绘制命令，故由ThreadedRenderer的mRootNode可以遍历到所有绘制命令，最后通过nSyncAndDrawFrame方法交给GPU去渲染画面。
+
+<h3 id="3">部分重绘</h3>
+
+硬件渲染模式下，部分重绘只会重绘发起invalidate的View，软件渲染会重绘和脏区域相交的所有View。
