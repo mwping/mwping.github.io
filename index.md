@@ -8,7 +8,7 @@ layout: default
 
 * [图解draw流程(软件渲染篇)](./android/drawSoftware.html)
 
-* [图解draw流程(硬件渲染篇)](./android/drawSoftware.html)
+* [图解draw流程(硬件渲染篇)](./android/drawHardware.html)
 
 #### Java
 
