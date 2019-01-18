@@ -11,6 +11,8 @@
 
 * ##### [移动画布](#4)
 
+* ##### [初始绘制](#5)
+
 <h3 id="1">确认脏区域</h3>
 
 * 根据invalidate本身的View的mLeft、mRight、mBottom、mTop得到初始脏区域：Rect(0, 0 - 300, 300)；
@@ -150,4 +152,26 @@ ViewGroup.java:
     canvas.translate(mLeft, mTop);
     draw(canvas);
     canvas.restoreToCount(restoreTo);
+```
+
+<h3 id="5">初始绘制</h3>
+
+当首次进入Activity时，脏区域应当占据整个屏幕(除去系统状态栏)：
+
+ViewRootImpl.java
+```java
+    @Override
+    public ViewParent invalidateChildInParent(int[] location, Rect dirty) {
+        if (dirty == null) {
+            invalidate();
+            return null;
+        }
+    }
+    
+    void invalidate() {
+        mDirty.set(0, 0, mWidth, mHeight);
+        if (!mWillDrawSoon) {
+            scheduleTraversals();
+        }
+    }
 ```
