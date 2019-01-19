@@ -7,8 +7,11 @@ layout: default
 #### 图解View绘制原理
 
 * [图解draw流程(软件渲染篇)](./android/drawSoftware.html)
-
 * [图解draw流程(硬件渲染篇)](./android/drawHardware.html)
+
+#### Android视频教程
+
+* [Google视频教程](./android/google-video.html)
 
 #### Java
 
