@@ -9,8 +9,6 @@
 
 #### 性能优化典范
 
-视频源：[YouTube: Android Performance Patterns](https://www.youtube.com/playlist?list=PLWz5rJ2EKKc9CBxr3BVjPTPoDPLdPIFCE)
-
 <table>
     <tr>
         <td><a href="http://mwping-android.oss-cn-hangzhou.aliyuncs.com/AndroidPerformancePatterns/s2e1.mp4" target="_blank">01</a></td>
@@ -108,6 +106,18 @@
         <td><a href="http://mwping-android.oss-cn-hangzhou.aliyuncs.com/AndroidPerformancePatterns/adp_WakeLocks.mp4" target="_blank">79</a></td>
     </tr>
 </table>
+
+视频源：[YouTube: Android Performance Patterns](https://www.youtube.com/playlist?list=PLWz5rJ2EKKc9CBxr3BVjPTPoDPLdPIFCE)
+
+目录：
+
+1. Battery Drain and Networking (Android Performance Patterns Season 2 ep1)
+2. Wear & Sensors (Android Performance Patterns Season 2 ep2)
+3. Smooth Android Wear Animation (Android Performance Patterns Season 2 ep3)
+4. Android Wear Data Batching (Android Performance Patterns Season 2 ep4)
+5. Object Pools (Android Performance Patterns Season 2 ep5)
+6. To Index or Iterate? (Android Performance Patterns Season 2 ep6)
+78. Android Performance Patterns: Understanding VSYNC  
 
 #### YouTube视频下载工具
 
