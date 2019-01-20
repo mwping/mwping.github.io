@@ -4,7 +4,7 @@
 
 ##### Google I/O 2012 - For Butter or Worse: Smoothing Out Performance in Android UIs
 
-1. [点击观看](http://mwping-android.oss-cn-hangzhou.aliyuncs.com/Google%20I_O%202012%20-%20For%20Butter%20or%20Worse_%20Smoothing%20Out%20Performance%20in%20Android%20UIs.mp4)
+1. [点击观看](http://mwping-android.oss-cn-hangzhou.aliyuncs.com/GoogleIO/Google_I_O_2012_%20Butter.mp4)
 2. [原链接](https://www.youtube.com/watch?v=Q8m9sHdyXnE)
 
 #### 性能优化典范

@@ -16,7 +16,7 @@
 
 <h3 id="1">项目依赖树</h3>
 
-<img src="../assets/images/edraw/componentization.png?v=1">
+<img src="../assets/images/edraw/componentization.png?v=2">
 
 说明：
 
@@ -76,7 +76,6 @@ android {
 dependencies {
 
 	// other dependencies
-
 	implementation project(':base')
     annotationProcessor project(':processor')
 }
