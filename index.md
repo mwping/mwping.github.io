@@ -4,7 +4,13 @@ layout: default
 
 ## 计算机技术实战
 
-#### 图解View绘制原理
+### Android专题
+
+#### 组件化
+
+* [组件化研究实践](./android/componentization.html)
+
+#### View绘制原理
 
 * [图解draw流程(软件渲染篇)](./android/drawSoftware.html)
 * [图解draw流程(硬件渲染篇)](./android/drawHardware.html)
@@ -13,14 +19,7 @@ layout: default
 
 * [Google视频教程](./android/google-video.html)
 
-#### Java
-
-* [理解Java中的锁概念](./java/java_lock.html)
-* [理解类加载机制](./java/class_load.html)
-* [自定义类加载器和反射调用](./java/reflect.html)
-* [IO](./java/io.html)
-
-#### Android
+#### 其他
 
 * [App启动流程](./android/app_startup.html)
 * [插件化](./android/pluggable.html)
@@ -30,28 +29,20 @@ layout: default
 * [Gradle插件开发与发布指南](./android/gradle-plugin.html)
 * [Gradle语法实战](./android/gradle-dsl.html)
 * [App生命周期](./android/app-lifecycle.html)
-
-**字节码系列**
-
 * [ASM指南](./android/asm.html)
-
-**App构建**
-
 * [App构建流程分析](./android/build-app.html)
-
-**adb专题**
-
 * [adb调试](./android/adb.html)
-
-**新版本解读**
-
 * [Android 9 Pie](./android/android-9-pie.html)
-
-**源码研究专题**
-
 * [Android源码阅读指南](./android/android_source_guide.html)
 * [adb shell am 命令和ActivityManagerService](./android/adb_shell_am.html)
 * [Android源码阅读遗留问题](./android/android-source-remaining-problems.html)
+
+#### Java
+
+* [理解Java中的锁概念](./java/java_lock.html)
+* [理解类加载机制](./java/class_load.html)
+* [自定义类加载器和反射调用](./java/reflect.html)
+* [IO](./java/io.html)
 
 #### 架构思想
 
