@@ -32,6 +32,7 @@ public final class ActivityThread extends ClientTransactionHandler {
     static volatile Handler sMainThreadHandler;  // set once in main()
     public static void main(String[] args) {
     	Looper.prepareMainLooper();
+    	ActivityThread thread = new ActivityThread();
     	if (sMainThreadHandler == null) {
             sMainThreadHandler = thread.getHandler();
         }
