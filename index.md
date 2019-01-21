@@ -21,6 +21,7 @@ layout: default
 
 #### 其他
 
+* [Handler机制分析](./android/handler.html)
 * [App启动流程](./android/app_startup.html)
 * [插件化](./android/pluggable.html)
 * [组件化](./android/componentization.html)

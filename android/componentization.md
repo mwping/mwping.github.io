@@ -16,7 +16,7 @@
 
 <h3 id="1">项目依赖树</h3>
 
-<img src="../assets/images/edraw/componentization.png?v=2">
+<img src="../assets/images/edraw/componentization.png?v=3">
 
 说明：
 
