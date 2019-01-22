@@ -11,6 +11,7 @@ layout: default
 * [图解draw流程(硬件渲染篇)](./android/drawHardware.html)
 * [Google视频教程](./android/google-video.html)
 * [Handler机制分析](./android/handler.html)
+* [异步的几种方式](./android/async_ways.html)
 * [App启动流程](./android/app_startup.html)
 * [插件化](./android/pluggable.html)
 * [组件化](./android/componentization.html)
