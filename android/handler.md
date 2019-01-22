@@ -6,6 +6,10 @@
 
 * ##### [主线程Handler和Looper](#2)
 
+* ##### [AsyncTask的Handler](#3)
+  1. [创建Handler](#3.1)
+  2. [发送消息](#3.2)
+
 <h3 id="1">框架图</h3>
 
 <img src="../assets/images/edraw/handler.png?v=1">
@@ -45,4 +49,45 @@ public final class ActivityThread extends ClientTransactionHandler {
     	// ...
     }
 }
+```
+
+<h3 id="3">AsyncTask的Handler</h3>
+
+<h4 id="3.1">创建Handler</h4>
+
+```java
+public abstract class AsyncTask<Params, Progress, Result> {
+    private static InternalHandler sHandler;
+    private final Handler mHandler;
+
+    public AsyncTask(@Nullable Looper callbackLooper) {
+        mHandler = callbackLooper == null || callbackLooper == Looper.getMainLooper()
+            ? getMainHandler()
+            : new Handler(callbackLooper);
+    }
+
+    private Result postResult(Result result) {
+        @SuppressWarnings("unchecked")
+        Message message = getHandler().obtainMessage(MESSAGE_POST_RESULT,
+                new AsyncTaskResult<Result>(this, result));
+        message.sendToTarget();
+        return result;
+    }
+
+    private Handler getHandler() {
+        return mHandler;
+    }
+}
+```
+
+<h4 id="3.2">发送消息</h4>
+
+```java
+    private Result postResult(Result result) {
+        @SuppressWarnings("unchecked")
+        Message message = getHandler().obtainMessage(MESSAGE_POST_RESULT,
+                new AsyncTaskResult<Result>(this, result));
+        message.sendToTarget();
+        return result;
+    }
 ```
