@@ -24,3 +24,8 @@ more memory efficient，比HashMap更省内存，但是查找效率比HashMap低
 ![](../assets/images/edraw/ArrayMap.png)
 
 <h4 id="1.3">使用场景</h4> 
+
+因为数组的插入、删除、扩容效率低，ArrayMap适应的场景：
+
+1. <1000对象；
+2. Map嵌套；
