@@ -1,8 +1,8 @@
-## 图解Map家族
+## 图解Set家族
 
 ### 目录
 
-* ##### [Map家族图谱](#1)
+* ##### [Set家族图谱](#1)
 
 * ##### [HashMap](#2)
   1. [设计目的](#2.1)
@@ -33,7 +33,7 @@
 
 <h3 id="1">Map家族图谱</h3>
 
-<img src="../assets/images/edraw/uml_map.png" width="616">
+<img src="../assets/images/edraw/uml_set.png" width="564">
 
 <h3 id="2">HashMap</h3>
 
