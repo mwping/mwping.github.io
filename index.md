@@ -4,6 +4,16 @@ layout: default
 
 ## 计算机技术实战
 
+#### 数据结构
+
+* [图解Map家族](./datastruct/map.html)
+* [图解Set家族](./datastruct/set.html)
+
+#### 架构设计
+
+* [Android组件化](./android/componentization.html)
+* [架构模式](./develop/architecture.html)
+
 ### Android专题
 
 * [组件化研究实践](./android/componentization.html)
@@ -14,7 +24,6 @@ layout: default
 * [异步的几种方式](./android/async_ways.html)
 * [App启动流程](./android/app_startup.html)
 * [插件化](./android/pluggable.html)
-* [组件化](./android/componentization.html)
 * [电池寿命](./android/battery_life.html)
 * [安全](./android/security.html)
 * [Gradle插件开发与发布指南](./android/gradle-plugin.html)
@@ -36,14 +45,6 @@ layout: default
 * [自定义类加载器和反射调用](./java/reflect.html)
 * [IO](./java/io.html)
 
-#### 数据结构
-
-* [图解Map家族](./datastruct/map.html)
-* [图解Set家族](./datastruct/set.html)
-
-#### 架构思想
-
-* [架构模式](./develop/architecture.html)
 
 #### 计算机网络
 
