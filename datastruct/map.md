@@ -141,6 +141,60 @@ map.put("a", "安庆");
 ```
 {a=安庆, b=北京, c=重庆}
 ```
+String实现了Comparable<String>接口：
+
+```java
+public interface Comparable<T> {
+  public int compareTo(T o);
+}
+```
+```
+"a".compareTo("b") == -1;
+"b".compareTo("a") == 1;
+"a".compareTo("a") == 0;
+```
+
+或者使用Comparator作为构造参数：
+```java
+    TreeMap<MyObject, String> map = new TreeMap<>(new Comparator<MyObject>() {
+        @Override
+        public int compare(MyObject o1, MyObject o2) {
+            if (o1 == o2) {
+                return 0;
+            }
+            if (o1 == null) {
+                return -1;
+            }
+            if (o2 == null) {
+                return 1;
+            }
+            return o1.i - o2.i;
+        }
+    });
+    map.put(new MyObject(3), "3");
+    map.put(new MyObject(1), "1");
+    map.put(new MyObject(2), "2");
+```
+```java
+    static class MyObject {
+        private int i;
+
+        public MyObject(int i) {
+            this.i = i;
+        }
+
+        @Override
+        public String toString() {
+            return "MyObject{" +
+                    "i=" + i +
+                    '}';
+        }
+    }
+```
+map.toString()输出：
+```
+{MyObject{i=1}=1, MyObject{i=2}=2, MyObject{i=3}=3}
+```
 
 <h3 id="6">ArrayMap</h3>
 
