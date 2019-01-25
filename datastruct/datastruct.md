@@ -23,7 +23,7 @@
 
 <h3 id="1">Map家族图谱</h3>
 
-![](../assets/images/edraw/uml_map.png)
+<img src="../assets/images/edraw/uml_map.png" width="616">
 
 <h3 id="2">HashMap</h3>
 
@@ -33,7 +33,7 @@
 
 <h4 id="2.2">图解</h4> 
 
-![](../assets/images/edraw/HashMap.png)
+<img src="../assets/images/edraw/HashMap.png" width="733">
 
 [红黑树(维基百科)](https://zh.wikipedia.org/wiki/%E7%BA%A2%E9%BB%91%E6%A0%91)
 
@@ -57,7 +57,7 @@
 
 LinkedHashMap数据结构和HashMap基本一致，不同的是多了一个双向链表结构：
 
-![](../assets/images/edraw/LinkedHashMap.png)
+<img src="../assets/images/edraw/LinkedHashMap.png" width="300">
 
 <h4 id="3.3">使用场景</h4>
 
@@ -77,7 +77,7 @@ more memory efficient，比HashMap更省内存，但是查找效率比HashMap低
     Object[] mArray;
 ```
 
-![](../assets/images/edraw/ArrayMap.png)
+<img src="../assets/images/edraw/ArrayMap.png" width="733">
 
 <h4 id="4.3">使用场景</h4> 
 
