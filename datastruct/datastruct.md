@@ -19,10 +19,15 @@
   2. [图解](#4.2)
   3. [使用场景](#4.3)
 
-* ##### [ArrayMap](#5)
+* ##### [TreeMap](#5)
   1. [设计目的](#5.1)
   2. [图解](#5.2)
   3. [使用场景](#5.3)
+
+* ##### [ArrayMap](#6)
+  1. [设计目的](#6.1)
+  2. [图解](#6.2)
+  3. [使用场景](#6.3)
 
 <h3 id="1">Map家族图谱</h3>
 
@@ -110,13 +115,38 @@ map.put("1", "北京");
 {1=北京, 2=深圳}
 ```
 
-<h3 id="5">ArrayMap</h3>
+<h3 id="5">TreeMap</h3>
 
 <h4 id="5.1">设计目的</h4> 
 
-more memory efficient，比HashMap更省内存，但是查找效率比HashMap低，时间换空间。
+按key排序。
 
 <h4 id="5.2">图解</h4> 
+
+<img src="../assets/images/edraw/TreeMap.png" width="460">
+
+<h4 id="5.3">使用场景</h4>
+
+需要按key排序。
+
+```java
+TreeMap<String, String> map = new TreeMap<>();
+map.put("c", "重庆");
+map.put("b", "北京");
+map.put("a", "安庆");
+```
+遍历顺序：
+```
+{a=安庆, b=北京, c=重庆}
+```
+
+<h3 id="6">ArrayMap</h3>
+
+<h4 id="6.1">设计目的</h4> 
+
+more memory efficient，比HashMap更省内存，但是查找效率比HashMap低，时间换空间。
+
+<h4 id="6.2">图解</h4> 
 
 使用两个数组，一个int数组存放每个Item的hash值，一个Object数组存放键值对：
 ```java
@@ -126,7 +156,7 @@ more memory efficient，比HashMap更省内存，但是查找效率比HashMap低
 
 <img src="../assets/images/edraw/ArrayMap.png" width="733">
 
-<h4 id="5.3">使用场景</h4> 
+<h4 id="6.3">使用场景</h4> 
 
 因为数组的插入、删除、扩容效率低，ArrayMap适应的场景：
 
