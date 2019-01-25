@@ -29,6 +29,8 @@
   2. [图解](#6.2)
   3. [使用场景](#6.3)
 
+* ##### [Map的选择总结](#7)
+
 <h3 id="1">Map家族图谱</h3>
 
 <img src="../assets/images/edraw/uml_map.png" width="616">
@@ -172,3 +174,7 @@ map.put("1", "北京");
 ```
 {1=北京, 2=深圳}
 ```
+
+<h3 id="7">Map的选择总结</h3>
+
+<img src="../assets/images/edraw/choose_map.png" width="613">

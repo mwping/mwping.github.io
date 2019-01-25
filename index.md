@@ -37,7 +37,7 @@ layout: default
 
 #### 数据结构
 
-* [图解数据结构](./datastruct/datastruct.html)
+* [图解Map家族](./datastruct/map.html)
 
 #### 架构思想
 
