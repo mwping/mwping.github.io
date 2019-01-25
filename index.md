@@ -27,6 +27,7 @@ layout: default
 * [Android源码阅读指南](./android/android_source_guide.html)
 * [adb shell am 命令和ActivityManagerService](./android/adb_shell_am.html)
 * [Android源码阅读遗留问题](./android/android-source-remaining-problems.html)
+* [泛型中的super和extends](./android/super_and_extends.html)
 
 #### Java
 
