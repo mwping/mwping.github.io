@@ -19,8 +19,6 @@
   2. [图解](#4.2)
   3. [使用场景](#4.3)
 
-
-
 <h3 id="1">Map家族图谱</h3>
 
 <img src="../assets/images/edraw/uml_map.png" width="616">
@@ -47,6 +45,16 @@
 
 1. 适合较大量数据的存储和查找。
 
+```java
+HashMap<String, String> map = new HashMap<>();
+map.put("2", "深圳");
+map.put("1", "北京");
+```
+遍历顺序：
+```
+{1=北京, 2=深圳}
+```
+
 <h3 id="3">LinkedHashMap</h3>
 
 <h4 id="3.1">设计目的</h4> 
@@ -62,6 +70,16 @@ LinkedHashMap数据结构和HashMap基本一致，不同的是多了一个双向
 <h4 id="3.3">使用场景</h4>
 
 如果期望遍历顺序和插入顺序一致，则可用LinkedHashMap。
+
+```java
+HashMap<String, String> map = new LinkedHashMap<>();
+map.put("2", "深圳");
+map.put("1", "北京");
+```
+遍历顺序：
+```
+{2=深圳, 1=北京}
+```
 
 <h3 id="4">ArrayMap</h3>
 
@@ -85,3 +103,13 @@ more memory efficient，比HashMap更省内存，但是查找效率比HashMap低
 
 1. <1000对象；
 2. Map嵌套；
+
+```java
+ArrayMap<String, String> map = new ArrayMap<>();
+map.put("2", "深圳");
+map.put("1", "北京");
+```
+遍历顺序：
+```
+{1=北京, 2=深圳}
+```
