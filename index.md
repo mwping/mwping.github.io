@@ -11,12 +11,11 @@ layout: default
 
 #### 架构设计
 
-* [Android组件化](./android/componentization.html)
+* [Android组件化研究实践](./android/componentization.html)
 * [架构模式](./develop/architecture.html)
 
 ### Android专题
 
-* [组件化研究实践](./android/componentization.html)
 * [图解draw流程(软件渲染篇)](./android/drawSoftware.html)
 * [图解draw流程(硬件渲染篇)](./android/drawHardware.html)
 * [Google视频教程](./android/google-video.html)
