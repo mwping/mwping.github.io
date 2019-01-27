@@ -131,3 +131,5 @@ closed
 Data，经过了共享密钥加密。
 
 > 服务器：这是我的Application Data，是对你的回复，也经过了共享密钥加密。
+
+<img src="../../assets/images/edraw/ssl.png" width="1000">

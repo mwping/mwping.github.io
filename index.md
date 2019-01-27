@@ -52,9 +52,6 @@ layout: default
 * [TCP](./network/tcp.html)
 * [长连接](./network/longconn.html)
 * [wireshark抓包](./network/wireshark.html)
-
-**http专题**
-
 * [http RFC 文档解读](./network/http/rfc.html)
 * [okhttp指南](./network/http/okhttp-guide.html)
 * [基于Tomcat调试Android http/https](./network/http/android-tomcat.html)
