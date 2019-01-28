@@ -44,6 +44,7 @@ layout: default
 * [理解类加载机制](./java/class_load.html)
 * [自定义类加载器和反射调用](./java/reflect.html)
 * [IO](./java/io.html)
+* [ThreadLocal](./java/ThreadLocal.html)
 
 
 #### 计算机网络
