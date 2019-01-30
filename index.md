@@ -15,6 +15,10 @@ layout: default
 * [架构模式](./develop/architecture.html)
 * [设计模式](./develop/design_pattern.html)
 
+#### 开源库
+
+* [图解EventBus](./opensource/EventBus.html)
+
 ### Android专题
 
 * [图解draw流程(软件渲染篇)](./android/drawSoftware.html)
