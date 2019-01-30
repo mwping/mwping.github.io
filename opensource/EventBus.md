@@ -18,4 +18,4 @@
 
 <h3 id="3">反注册</h3>
 
-<img src="../assets/images/edraw/EventBus-unRegister.png" width="1180">
+<img src="../assets/images/edraw/EventBus-unRegister.png?v=1" width="1180">
