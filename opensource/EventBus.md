@@ -12,6 +12,9 @@
 
 * ##### [postSticky](#5)
 
+* ##### [设计模式](#6)
+  1. [单例](#6.1)
+
 <h3 id="1">注册</h3>
 
 <img src="../assets/images/edraw/EventBus.png?v=2" width="880">
@@ -27,3 +30,27 @@
 <h3 id="4">MainThread</h3>
 
 <h3 id="5">postSticky</h3>
+
+<h3 id="6">设计模式</h3>
+
+<h4 id="6.1">单例</h4> 
+```java
+public class EventBus {
+
+    static volatile EventBus defaultInstance;
+    
+    /** Convenience singleton for apps using a process-wide EventBus instance. */
+    public static EventBus getDefault() {
+        EventBus instance = defaultInstance;
+        if (instance == null) {
+            synchronized (EventBus.class) {
+                instance = EventBus.defaultInstance;
+                if (instance == null) {
+                    instance = EventBus.defaultInstance = new EventBus();
+                }
+            }
+        }
+        return instance;
+    }
+}
+```
