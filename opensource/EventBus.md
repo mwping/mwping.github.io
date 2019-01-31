@@ -10,12 +10,12 @@
 
 <h3 id="1">注册</h3>
 
-<img src="../assets/images/edraw/EventBus.png" width="1180">
+<img src="../assets/images/edraw/EventBus.png?v=2" width="880">
 
 <h3 id="2">发送事件</h3>
 
-<img src="../assets/images/edraw/EventBus-post.png" width="980">
+<img src="../assets/images/edraw/EventBus-post.png?v=2" width="880">
 
 <h3 id="3">反注册</h3>
 
-<img src="../assets/images/edraw/EventBus-unRegister.png?v=1" width="1180">
+<img src="../assets/images/edraw/EventBus-unRegister.png?v=2" width="900">
