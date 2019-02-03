@@ -36,7 +36,7 @@
 
     }
 ```
-<img src="../assets/images/edraw/EventBus-post-main.png" width="680">
+<img src="../assets/images/edraw/EventBus-post-main.png?v=1" width="680">
 
 <h3 id="5">postSticky</h3>
 
