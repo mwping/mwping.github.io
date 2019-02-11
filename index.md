@@ -15,7 +15,7 @@ layout: default
 * [架构模式](./develop/architecture.html)
 * [设计模式](./develop/design_pattern.html)
 
-#### 开源库
+#### 源码解析
 
 * [图解EventBus](./opensource/EventBus.html)
 
