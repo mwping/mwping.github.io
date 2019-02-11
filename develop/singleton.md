@@ -21,7 +21,7 @@
 
 <h3 id="2">单例模式VS静态变量</h3>
 
-<img src="../assets/images/edraw/singleton_why.png?v=1" width="750">
+<img src="../assets/images/edraw/singleton_why.png?v=2" width="750">
 
 
 <h3 id="3">应用</h3>
