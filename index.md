@@ -14,6 +14,7 @@ layout: default
 * [Android组件化研究实践](./android/componentization.html)
 * [架构模式](./develop/architecture.html)
 * [设计模式](./develop/design_pattern.html)
+	* [单例模式](./develop/singleton.html)
 
 #### 源码解析
 
