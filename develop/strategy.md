@@ -17,11 +17,11 @@
 
 以动画时间插值器为例：
 
-<img src="../assets/images/edraw/strategy_uml.png" width="650">
+<img src="../assets/images/edraw/strategy_uml.png?v=1" width="650">
 
 <h3 id="2">应用</h3>
 
-<img src="../assets/images/edraw/strategy_useage.png" width="390">
+<img src="../assets/images/edraw/strategy_useage.png" width="430">
 
 <h4 id="2.1">TimeInterpolator</h4> 
 
