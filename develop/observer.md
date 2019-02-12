@@ -16,7 +16,7 @@
 
 以ListView用到的观察者模式为例：
 
-<img src="../assets/images/edraw/uml_observer.png" width="830">
+<img src="../assets/images/edraw/uml_observer.png?v=1" width="830">
 
 <h3 id="2">应用</h3>
 
