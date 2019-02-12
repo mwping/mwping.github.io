@@ -16,6 +16,7 @@ layout: default
 * [设计模式](./develop/design_pattern.html)
 	* [单例模式](./develop/singleton.html)
 	* [策略模式](./develop/strategy.html)
+	* [观察者模式](./develop/observer.html)
 
 #### 源码解析
 
