@@ -20,4 +20,4 @@
 
 <h3 id="2">应用</h3>
 
-<img src="../assets/images/edraw/observer_useage.png" width="600">
+<img src="../assets/images/edraw/observer_useage.png?v=1" width="600">
