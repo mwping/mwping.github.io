@@ -15,6 +15,7 @@ layout: default
 * [架构模式](./develop/architecture.html)
 * [设计模式](./develop/design_pattern.html)
 	* [单例模式](./develop/singleton.html)
+	* [策略模式](./develop/strategy.html)
 
 #### 源码解析
 
@@ -74,3 +75,4 @@ layout: default
 * [md格式](./index_bak.html)
 * [待办事项](./help/todo.html)
 * [维基百科(中文)](https://zh.wikipedia.org/wiki/Wikipedia:%E9%A6%96%E9%A1%B5)
+* [UML帮助](http://www.uml.org.cn/oobject/201211231.asp)
