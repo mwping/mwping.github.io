@@ -18,6 +18,8 @@ layout: default
 	* [策略模式](./develop/strategy.html)
 	* [观察者模式](./develop/observer.html)
 	* [装饰者模式](./develop/decorator.html)
+	* [工厂方法模式](./develop/factoryMethod.html)
+	* [抽象工厂模式](./develop/abstractFactory.html)
 
 #### 源码解析
 
