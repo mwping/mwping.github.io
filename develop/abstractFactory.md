@@ -5,6 +5,8 @@
   2. [类图](#1.2)
   3. [应用](#2.3)
 
+* ##### [应用](#2)
+
 <h3 id="1">抽象工厂模式</h3>
 
 <h4 id="1.1">定义</h4> 
@@ -15,4 +17,4 @@
 
 <img src="../assets/images/edraw/uml_abstractFactory.png" width="900">
 
-<h4 id="1.3">应用</h4> 
+<h3 id="2">应用</h3> 

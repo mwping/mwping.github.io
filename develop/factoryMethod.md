@@ -17,11 +17,20 @@
 
 <img src="../assets/images/edraw/uml_factoryMethod.png" width="600">
 
-<h4 id="2">应用</h4> 
+<h3 id="2">应用</h3> 
 
 <img src="../assets/images/edraw/factoryMethod_useage.png" width="550">
 
 <h4 id="2.1">ThreadFactory</h4> 
+
+```java
+public interface ThreadFactory {
+
+    Thread newThread(Runnable r);
+    
+}
+```
+
 ```java
     public ThreadPoolExecutor(int corePoolSize,
                               int maximumPoolSize,
