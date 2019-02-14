@@ -23,6 +23,7 @@ layout: default
 	* [命令模式](./develop/command.html)
 	* [适配器模式](./develop/adapter.html)
 	* [外观模式](./develop/facade.html)
+	* [模板方法模式](./develop/templateMethod.html)
 
 #### 源码解析
 
