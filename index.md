@@ -21,6 +21,7 @@ layout: default
 	* [工厂方法模式](./develop/factoryMethod.html)
 	* [抽象工厂模式](./develop/abstractFactory.html)
 	* [命令模式](./develop/command.html)
+	* [适配器模式](./develop/adapter.html)
 
 #### 源码解析
 
