@@ -24,6 +24,7 @@ layout: default
 	* [适配器模式](./develop/adapter.html)
 	* [外观模式](./develop/facade.html)
 	* [模板方法模式](./develop/templateMethod.html)
+	* [迭代器模式](./develop/iterator.html)
 
 #### 源码解析
 
