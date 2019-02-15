@@ -27,6 +27,7 @@ layout: default
 	* [迭代器模式](./develop/iterator.html)
 	* [组合模式](./develop/composite.html)
 	* [状态模式](./develop/state.html)
+	* [代理模式](./develop/proxy.html)
 
 #### 源码解析
 
