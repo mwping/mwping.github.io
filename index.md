@@ -14,20 +14,6 @@ layout: default
 * [Android组件化研究实践](./android/componentization.html)
 * [架构模式](./develop/architecture.html)
 * [设计模式](./develop/design_pattern.html)
-	* [单例模式](./develop/singleton.html)
-	* [策略模式](./develop/strategy.html)
-	* [观察者模式](./develop/observer.html)
-	* [装饰者模式](./develop/decorator.html)
-	* [工厂方法模式](./develop/factoryMethod.html)
-	* [抽象工厂模式](./develop/abstractFactory.html)
-	* [命令模式](./develop/command.html)
-	* [适配器模式](./develop/adapter.html)
-	* [外观模式](./develop/facade.html)
-	* [模板方法模式](./develop/templateMethod.html)
-	* [迭代器模式](./develop/iterator.html)
-	* [组合模式](./develop/composite.html)
-	* [状态模式](./develop/state.html)
-	* [代理模式](./develop/proxy.html)
 
 #### 源码解析
 
