@@ -11,7 +11,7 @@
 
 <h4 id="1.1">类图</h4>
 
-<img src="../assets/images/edraw/uml_mvc.png?v=1" width="630">
+<img src="../assets/images/edraw/uml_mvc.png?v=2" width="630">
 
 <h3 id="2">MVP</h3>
 
