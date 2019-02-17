@@ -169,7 +169,7 @@ public class ValueAnimator extends Animator implements AnimationHandler.Animatio
 
 以ListView用到的观察者模式为例：
 
-<img src="../assets/images/edraw/uml_observer.png?v=1" width="830">
+<img src="../assets/images/edraw/uml_observer.png?v=2" width="1000">
 
 <h3 id="5">装饰者模式</h3>
 
