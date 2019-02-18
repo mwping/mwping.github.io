@@ -81,7 +81,7 @@
 
 <h4 id="1.3">设计模式一览</h4>
 
-<img src="../assets/images/edraw/design_pattern.png?v=3" width="1000">
+<img src="../assets/images/edraw/design_pattern.png?v=4" width="1000">
 
 <h3 id="2">单例模式</h3>
 
