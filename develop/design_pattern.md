@@ -77,6 +77,10 @@
   1. [意图](#17.1)
   2. [类图](#17.2)
 
+* ##### [原型模式(Prototype)](#18)
+  1. [意图](#18.1)
+  2. [类图](#18.2)
+
 <h3 id="1">面向对象</h3>
 
 <h4 id="1.1">OO特征</h4>
@@ -378,5 +382,15 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
 <h4 id="17.2">类图</h4> 
 
 <img src="../assets/images/edraw/uml_state.png" width="500">
+
+<h3 id="18">原型模式(Prototype)</h3>
+
+<h4 id="18.1">意图</h4> 
+
+用原型实例指定创建对象的种类，并且通过拷贝这些原型创建新的对象。
+
+<h4 id="18.2">类图</h4> 
+
+<img src="../assets/images/edraw/uml_prototype.png" width="600">
 
 
