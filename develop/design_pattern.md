@@ -225,7 +225,7 @@ public interface ThreadFactory {
 
 <h4 id="7.2">类图</h4> 
 
-<img src="../assets/images/edraw/uml_abstractFactory.png" width="900">
+<img src="../assets/images/edraw/uml_abstractFactory.png?v=1" width="900">
 
 <h3 id="8">命令模式</h3>
 
