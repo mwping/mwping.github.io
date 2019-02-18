@@ -24,13 +24,13 @@
   1. [定义](#5.1)
   2. [类图](#5.2)
 
-* ##### [工厂方法模式](#6)
-  1. [定义](#6.1)
+* ##### [工厂方法模式(Factory Method)](#6)
+  1. [意图](#6.1)
   2. [类图](#6.2)
   3. [应用:ThreadFactory](#6.3)
 
-* ##### [抽象工厂模式](#7)
-  1. [定义](#7.1)
+* ##### [抽象工厂模式(Abstract Factory)](#7)
+  1. [意图](#7.1)
   2. [类图](#7.2)
 
 * ##### [命令模式](#8)
@@ -38,12 +38,12 @@
   2. [类图](#8.2)
   3. [应用:ThreadPoolExecutor](#8.3)
 
-* ##### [适配器模式](#9)
-  1. [定义](#9.1)
+* ##### [适配器模式(Adapter)](#9)
+  1. [意图](#9.1)
   2. [类图](#9.2)
 
-* ##### [外观模式](#10)
-  1. [定义](#10.1)
+* ##### [外观模式(Facade)](#10)
+  1. [意图](#10.1)
   2. [类图](#10.2)
 
 * ##### [模板方法模式](#11)
@@ -55,8 +55,8 @@
   1. [定义](#12.1)
   2. [类图](#12.2)
 
-* ##### [组合模式](#13)
-  1. [定义](#13.1)
+* ##### [组合模式(Composite)](#13)
+  1. [意图](#13.1)
   2. [类图](#13.2)
 
 * ##### [状态模式](#14)
@@ -68,6 +68,14 @@
   2. [远程代理](#15.2)
   3. [保护代理](#15.3)
   4. [同步代理](#15.4)
+
+* ##### [建造者模式(Builder)](#16)
+  1. [意图](#16.1)
+  2. [类图](#16.2)
+
+* ##### [桥接模式(Bridge)](#17)
+  1. [意图](#17.1)
+  2. [类图](#17.2)
 
 <h3 id="1">面向对象</h3>
 
@@ -183,15 +191,15 @@ public class ValueAnimator extends Animator implements AnimationHandler.Animatio
 
 <img src="../assets/images/edraw/uml_decorator.png" width="330">
 
-<h3 id="6">工厂方法模式</h3>
+<h3 id="6">工厂方法模式(Factory Method)</h3>
 
-<h4 id="6.1">定义</h4> 
+<h4 id="6.1">意图</h4> 
 
 定义一个创建对象的接口，但由子类决定要实例化的类是哪一个。工厂方法让类把实例化延迟到子类。
 
 <h4 id="6.2">类图</h4> 
 
-<img src="../assets/images/edraw/uml_factoryMethod.png" width="600">
+<img src="../assets/images/edraw/uml_factoryMethod.png?v=1" width="600">
 
 <h4 id="6.3">应用:ThreadFactory</h4> 
 
@@ -217,11 +225,11 @@ public interface ThreadFactory {
     }
 ```
 
-<h3 id="7">抽象工厂模式</h3>
+<h3 id="7">抽象工厂模式(Abstract Factory)</h3>
 
-<h4 id="7.1">定义</h4> 
+<h4 id="7.1">意图</h4> 
 
-提供一个接口，用于创建相关或依赖对象的家族，而不需要明确指定具体类。
+提供一个创建一系列相关或相互依赖的对象的接口，而无需指定它们具体的类。
 
 <h4 id="7.2">类图</h4> 
 
@@ -254,9 +262,9 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
 }
 ```
 
-<h3 id="9">适配器模式</h3>
+<h3 id="9">适配器模式(Adapter)</h3>
 
-<h4 id="9.1">定义</h4> 
+<h4 id="9.1">意图</h4> 
 
 将一个类的接口，转换成客户期望的另一个接口。适配器让原本不兼容的类可以合作无间。
 
@@ -264,13 +272,13 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
 
 以ListView为例：
 
-<img src="../assets/images/edraw/uml_adapter.png" width="680">
+<img src="../assets/images/edraw/uml_adapter.png?v=1" width="600">
 
-<h3 id="10">外观模式</h3>
+<h3 id="10">外观模式(Facade)</h3>
 
-<h4 id="10.1">定义</h4> 
+<h4 id="10.1">意图</h4> 
 
-提供一个统一的接口，用来访问子系统中的一群接口。外观定义了一个高层接口，让子系统更容易使用。
+为子系统提供一个接口，便于它的使用。
 
 <h4 id="10.2">类图</h4> 
 
@@ -313,15 +321,15 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
 
 <img src="../assets/images/edraw/uml_iterator.png" width="630">
 
-<h3 id="13">组合模式</h3>
+<h3 id="13">组合模式(Composite)</h3>
 
-<h4 id="13.1">定义</h4> 
+<h4 id="13.1">意图</h4> 
 
-将对象组合成树形结构来表现\"整体/部分\"层次结构。组合能让客户以一致的方式处理个别对象以及对象组合。
+让客户以一致的方式处理个别对象以及对象组合。
 
 <h4 id="13.2">类图</h4> 
 
-<img src="../assets/images/edraw/uml_composite.png" width="280">
+<img src="../assets/images/edraw/uml_composite.png?v=1" width="550">
 
 <h3 id="14">状态模式</h3>
 
@@ -350,5 +358,25 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
 <h4 id="15.4">同步代理</h4>
 
 <img src="../assets/images/edraw/uml_sync_proxy.png" width="600">
+
+<h3 id="16">建造者模式(Builder)</h3>
+
+<h4 id="16.1">意图</h4> 
+
+将一个复杂对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示。
+
+<h4 id="16.2">类图</h4> 
+
+<img src="../assets/images/edraw/uml_builder.png" width="750">
+
+<h3 id="17">桥接模式(Bridge)</h3>
+
+<h4 id="17.1">意图</h4> 
+
+将抽象与抽象方法的实现相互分离来实现解耦，以便二者可以相互独立地变化。
+
+<h4 id="17.2">类图</h4> 
+
+<img src="../assets/images/edraw/uml_state.png" width="500">
 
 
