@@ -74,3 +74,4 @@ layout: default
 * [待办事项](./help/todo.html)
 * [维基百科(中文)](https://zh.wikipedia.org/wiki/Wikipedia:%E9%A6%96%E9%A1%B5)
 * [UML帮助](http://www.uml.org.cn/oobject/201211231.asp)
+* [UML基础](./help/uml_basic.html)
