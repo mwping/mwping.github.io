@@ -5,8 +5,8 @@
   2. [OO原则](#1.2)
   3. [设计模式一览](#1.3)
 
-* ##### [单例模式](#2)
-  1. [定义](#2.1)
+* ##### [单例模式(Singleton)](#2)
+  1. [意图](#2.1)
   2. [类图](#2.2)
   3. [单例模式VS静态变量](#2.3)
   4. [应用：EventBus](#2.4)
@@ -95,15 +95,15 @@
 
 <img src="../assets/images/edraw/design_pattern.png?v=4" width="1000">
 
-<h3 id="2">单例模式</h3>
+<h3 id="2">单例模式(Singleton)</h3>
 
-<h4 id="2.1">定义</h4> 
+<h4 id="2.1">意图</h4> 
 
 确保一个类只有一个实例，并提供一个全局访问点。
 
 <h4 id="2.2">类图</h4> 
 
-<img src="../assets/images/edraw/singleton_uml.png" width="380">
+<img src="../assets/images/edraw/uml_singleton.png?v=1" width="625">
 
 <h4 id="2.3">单例模式VS静态变量</h4>
 
