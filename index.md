@@ -18,6 +18,7 @@ layout: default
 #### 源码解析
 
 * [图解EventBus](./opensource/EventBus.html)
+* [图解ThreadLocal](./opensource/ThreadLocal.html)
 
 ### Android专题
 
@@ -48,7 +49,6 @@ layout: default
 * [理解类加载机制](./java/class_load.html)
 * [自定义类加载器和反射调用](./java/reflect.html)
 * [IO](./java/io.html)
-* [ThreadLocal](./java/ThreadLocal.html)
 
 
 #### 计算机网络
