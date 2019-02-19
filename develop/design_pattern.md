@@ -84,6 +84,10 @@
   1. [意图](#19.1)
   2. [类图](#19.2)
 
+* ##### [责任链模式(Chain Of Responsibility)](#20)
+  1. [意图](#20.1)
+  2. [类图](#20.2)
+
 <h3 id="1">面向对象</h3>
 
 <h4 id="1.1">OO特征</h4>
@@ -380,5 +384,16 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
 利用共享技术有效地支持大量细粒度对象。
 
 <h4 id="19.2">类图</h4> 
+
+<h3 id="20">责任链模式(Chain Of Responsibility)</h3>
+
+<h4 id="20.1">意图</h4> 
+
+使多个对象都有机会处理请求，从而避免请求的发送者和接收者直接的耦合关系。
+
+<h4 id="20.2">类图</h4> 
+
+<img src="../assets/images/edraw/uml_responsibility.png" width="500">
+
 
 
