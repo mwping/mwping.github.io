@@ -80,6 +80,10 @@
   1. [意图](#18.1)
   2. [类图](#18.2)
 
+* ##### [享元模式(Flyweight)](#19)
+  1. [意图](#19.1)
+  2. [类图](#19.2)
+
 <h3 id="1">面向对象</h3>
 
 <h4 id="1.1">OO特征</h4>
@@ -262,7 +266,7 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
 
 <h4 id="10.2">类图</h4> 
 
-<img src="../assets/images/edraw/uml_facade.png" width="660">
+<img src="../assets/images/edraw/uml_facade.png?v=1" width="660">
 
 <h3 id="11">模板方法模式</h3>
 
@@ -329,7 +333,7 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
 
 <h4 id="15.2">远程代理</h4>
 
-<img src="../assets/images/edraw/uml_aidl.png" width="850">
+<img src="../assets/images/edraw/uml_aidl.png?v=1" width="850">
 
 <h4 id="15.3">保护代理</h4>
 
@@ -368,5 +372,13 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
 <h4 id="18.2">类图</h4> 
 
 <img src="../assets/images/edraw/uml_prototype.png" width="600">
+
+<h3 id="19">享元模式(Flyweight)</h3>
+
+<h4 id="19.1">意图</h4> 
+
+利用共享技术有效地支持大量细粒度对象。
+
+<h4 id="19.2">类图</h4> 
 
 
