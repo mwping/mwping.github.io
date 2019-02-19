@@ -19,13 +19,13 @@ layout: default
 
 * [图解EventBus](./opensource/EventBus.html)
 * [图解ThreadLocal](./opensource/ThreadLocal.html)
+* [Handler机制分析](./opensource/handler.html)
 
 ### Android专题
 
 * [图解draw流程(软件渲染篇)](./android/drawSoftware.html)
 * [图解draw流程(硬件渲染篇)](./android/drawHardware.html)
 * [Google视频教程](./android/google-video.html)
-* [Handler机制分析](./android/handler.html)
 * [异步的几种方式](./android/async_ways.html)
 * [App启动流程](./android/app_startup.html)
 * [插件化](./android/pluggable.html)

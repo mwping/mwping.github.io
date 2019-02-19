@@ -12,7 +12,7 @@
 
 <h3 id="1">框架图</h3>
 
-<img src="../assets/images/edraw/handler.png?v=1">
+<img src="../assets/images/edraw/uml_handler.png" width="850">
 
 和上图有关的Message的几个成员变量：
 
