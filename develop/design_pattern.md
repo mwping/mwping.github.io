@@ -112,7 +112,7 @@
 
 <h4 id="1.2">OO原则</h4>
 
-<img src="../assets/images/edraw/oo_principle.png" width="410">
+<img src="../assets/images/edraw/oo_principle.png?v=1" width="820">
 
 <h4 id="1.3">设计模式一览</h4>
 
