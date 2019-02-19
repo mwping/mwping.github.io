@@ -9,7 +9,6 @@
   1. [意图](#2.1)
   2. [类图](#2.2)
   3. [单例模式VS静态变量](#2.3)
-  4. [应用：EventBus](#2.4)
 
 * ##### [策略模式](#3)
   1. [定义](#3.1)
@@ -20,8 +19,8 @@
   1. [定义](#4.1)
   2. [类图](#4.2)
 
-* ##### [装饰者模式](#5)
-  1. [定义](#5.1)
+* ##### [装饰者模式(Decorator)](#5)
+  1. [意图](#5.1)
   2. [类图](#5.2)
 
 * ##### [工厂方法模式(Factory Method)](#6)
@@ -109,29 +108,6 @@
 
 <img src="../assets/images/edraw/singleton_why.png?v=2" width="750">
 
-<h4 id="2.4">应用1：EventBus</h4>
-
-```java
-public class EventBus {
-
-    static volatile EventBus defaultInstance;
-    
-    /** Convenience singleton for apps using a process-wide EventBus instance. */
-    public static EventBus getDefault() {
-        EventBus instance = defaultInstance;
-        if (instance == null) {
-            synchronized (EventBus.class) {
-                instance = EventBus.defaultInstance;
-                if (instance == null) {
-                    instance = EventBus.defaultInstance = new EventBus();
-                }
-            }
-        }
-        return instance;
-    }
-}
-```
-
 <h3 id="3">策略模式</h3>
 
 <h4 id="3.1">定义</h4> 
@@ -183,9 +159,9 @@ public class ValueAnimator extends Animator implements AnimationHandler.Animatio
 
 <img src="../assets/images/edraw/uml_observer.png?v=2" width="1000">
 
-<h3 id="5">装饰者模式</h3>
+<h3 id="5">装饰者模式(Decorator)</h3>
 
-<h4 id="5.1">定义</h4> 
+<h4 id="5.1">意图</h4> 
 
 动态地将责任附加到对象上。想要扩展功能，装饰者提供有别于继承的另一种选择。
 
@@ -193,7 +169,7 @@ public class ValueAnimator extends Animator implements AnimationHandler.Animatio
 
 以InputStream为例：
 
-<img src="../assets/images/edraw/uml_decorator.png" width="330">
+<img src="../assets/images/edraw/uml_decorator.png?v=1" width="470">
 
 <h3 id="6">工厂方法模式(Factory Method)</h3>
 
@@ -377,11 +353,11 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
 
 <h4 id="17.1">意图</h4> 
 
-将抽象与抽象方法的实现相互分离来实现解耦，以便二者可以相互独立地变化。
+将抽象部分与它的实现部分分离，使它们都可以独立地变化。
 
 <h4 id="17.2">类图</h4> 
 
-<img src="../assets/images/edraw/uml_state.png" width="500">
+<img src="../assets/images/edraw/uml_bridge.png" width="880">
 
 <h3 id="18">原型模式(Prototype)</h3>
 
