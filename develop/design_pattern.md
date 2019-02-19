@@ -88,6 +88,22 @@
   1. [意图](#20.1)
   2. [类图](#20.2)
 
+* ##### [解释器模式(Interpreter)](#21)
+  1. [意图](#21.1)
+  2. [类图](#21.2)
+
+* ##### [中介者模式(Mediator)](#22)
+  1. [意图](#22.1)
+  2. [类图](#22.2)
+
+* ##### [备忘录模式(Memento)](#23)
+  1. [意图](#23.1)
+  2. [类图](#23.2)
+
+* ##### [访问者模式(Visitor)](#24)
+  1. [意图](#24.1)
+  2. [类图](#24.2)
+
 <h3 id="1">面向对象</h3>
 
 <h4 id="1.1">OO特征</h4>
@@ -165,7 +181,7 @@ public class ValueAnimator extends Animator implements AnimationHandler.Animatio
 
 以ListView用到的观察者模式为例：
 
-<img src="../assets/images/edraw/uml_observer.png?v=2" width="1000">
+<img src="../assets/images/edraw/uml_observer.png?v=3" width="1000">
 
 <h3 id="5">装饰者模式(Decorator)</h3>
 
@@ -327,7 +343,7 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
 
 <h4 id="14.2">类图</h4> 
 
-<img src="../assets/images/edraw/uml_state.png" width="500">
+<img src="../assets/images/edraw/uml_state.png?v=1" width="500">
 
 <h3 id="15">代理模式</h3>
 
@@ -395,5 +411,34 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
 
 <img src="../assets/images/edraw/uml_responsibility.png" width="500">
 
+<h3 id="21">解释器模式(Interpreter)</h3>
 
+<h4 id="21.1">意图</h4> 
 
+给定一个语言，定义它的文法的一种表示，并定义一个解释器，这个解释器使用该表示来解释语言中的句子。
+
+<h4 id="21.2">类图</h4> 
+
+<h3 id="22">中介者模式(Mediator)</h3>
+
+<h4 id="22.1">意图</h4> 
+
+用一个中介来封装一系列的对象交互。中介者使各个对象不需要显示地相互引用，从而使其耦合松散，而且可以独立地改变他们之间的交互。
+
+<h4 id="22.2">类图</h4> 
+
+<h3 id="23">备忘录模式(Memento)</h3>
+
+<h4 id="23.1">意图</h4> 
+
+在不破坏封装性的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态，这样以后就可以将该对象恢复到原先保存的状态。
+
+<h4 id="23.2">类图</h4> 
+
+<h3 id="24">访问者模式(Visitor)</h3>
+
+<h4 id="24.1">意图</h4> 
+
+表示一个作用于某对象结构中的各元素的操作。它使你可以在不改变各元素的类的前提下定义作用于这些元素的新操作。
+
+<h4 id="24.2">类图</h4> 
