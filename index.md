@@ -4,6 +4,10 @@ layout: default
 
 ## 计算机技术实战
 
+#### Android专题研究
+
+* [App构建流程分析](./android/build-app.html)
+
 #### 数据结构
 
 * [图解Map家族](./datastruct/map.html)
@@ -35,7 +39,6 @@ layout: default
 * [Gradle语法实战](./android/gradle-dsl.html)
 * [App生命周期](./android/app-lifecycle.html)
 * [ASM指南](./android/asm.html)
-* [App构建流程分析](./android/build-app.html)
 * [adb调试](./android/adb.html)
 * [Android 9 Pie](./android/android-9-pie.html)
 * [Android源码阅读指南](./android/android_source_guide.html)
