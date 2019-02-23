@@ -4,6 +4,11 @@ layout: default
 
 ## 计算机技术实战
 
+#### Android课程实践
+
+* [Android课程实践](./android/course/home.html)
+* [Udacity:Android性能优化](./android/course/udacity/android_performance.html)
+
 #### Android专题研究
 
 * [App构建流程分析](./android/build-app.html)
