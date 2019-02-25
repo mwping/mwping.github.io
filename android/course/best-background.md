@@ -17,7 +17,7 @@
 
 <h3 id="2">后台任务处理方式的选择</h3>
 
-<img src="../../assets/images/course/background_guide.png" width="660">
+<img src="../../assets/images/course/background_guide.png?v=1" width="660">
 
 <h3 id="3">Service生命周期</h3>
 
