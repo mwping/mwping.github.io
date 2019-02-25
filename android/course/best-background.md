@@ -9,6 +9,10 @@
 
 * ##### [onStartCommand返回值含义](#4)
 
+* ##### [前台服务](#5)
+
+* ##### [可延迟的任务](#6)
+
 <h3 id="1">进程优先级</h3>
 
 [ProcessList](https://android.googlesource.com/platform/frameworks/base/+/master/services/core/java/com/android/server/am/ProcessList.java)定义了进程优先级：
@@ -32,3 +36,28 @@ IntentService生命周期和Service基本一致，只是处理完所有任务之
 <h3 id="4">onStartCommand返回值含义</h3>
 
 <img src="../../assets/images/course/onstart_command.png" width="800">
+
+<h3 id="5">前台服务</h3>
+
+前台服务具有更高的优先级，更难被系统杀掉，但是需要发送状态栏通知，让用户能感知到服务的存在。
+
+用法：
+
+1.声明权限：
+```
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+```
+2.调用方法：
+```java
+	startForeground(int id, notification)
+```
+需要额外[创建notification](https://developer.android.com/training/notify-user/build-notification)。
+
+<h3 id="6">可延迟的任务</h3>
+
+可延迟的任务可以使用JobScheduler，让自定义任务在设定的条件被触发时再执行，如：手机连接USB、WIFI连接。
+
+
+
+
+
