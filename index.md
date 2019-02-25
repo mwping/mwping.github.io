@@ -7,6 +7,8 @@ layout: default
 #### Android课程实践
 
 * [Android课程实践](./android/course/home.html)
+    1. [后台任务最佳实践](./android/course/best-background.html)
+
 * [Udacity:Android性能优化](./android/course/udacity/android_performance.html)
 
 #### Android专题研究
