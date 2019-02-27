@@ -1,7 +1,7 @@
 
 ## [后台任务最佳实践](https://developer.android.com/training/best-background)
 
-* ##### [进程优先级](#1)
+* ##### [进程和线程](#1)
 
 * ##### [后台任务处理方式的选择](#2)
 
@@ -13,11 +13,16 @@
 
 * ##### [可延迟的任务](#6)
 
-<h3 id="1">进程优先级</h3>
+<h3 id="1">进程和线程</h3>
 
 [ProcessList](https://android.googlesource.com/platform/frameworks/base/+/master/services/core/java/com/android/server/am/ProcessList.java)定义了进程优先级：
 
 <img src="../../assets/images/course/process_priority.png" width="600">
+
+线程优先级是：
+
+<img src="../../assets/images/course/thread_priority.png" width="440">
+
 
 <h3 id="2">后台任务处理方式的选择</h3>
 
