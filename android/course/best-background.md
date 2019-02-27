@@ -17,7 +17,7 @@
 
 [ProcessList](https://android.googlesource.com/platform/frameworks/base/+/master/services/core/java/com/android/server/am/ProcessList.java)定义了进程优先级：
 
-<img src="../../assets/images/course/process_priority.png" width="600">
+<img src="../../assets/images/course/process_priority.png?v=1" width="600">
 
 线程优先级是：
 
