@@ -12,3 +12,8 @@ Matching Java Virtual Machines (1):
 ```
 ./gradlew 模块名:dependencies
 ```
+
+#### Git 添加子模块
+```
+git submodule add https://xxx/xxx.git my/dir
+```
