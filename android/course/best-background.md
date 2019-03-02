@@ -17,12 +17,15 @@
 
 [ProcessList](https://android.googlesource.com/platform/frameworks/base/+/master/services/core/java/com/android/server/am/ProcessList.java)定义了进程优先级：
 
-<img src="../../assets/images/course/process_priority.png?v=1" width="600">
+<img src="../../assets/images/course/process_priority.png?v=2" width="600">
 
 线程优先级是：
 
 <img src="../../assets/images/course/thread_priority.png" width="440">
 
+线程间通信：
+
+<img src="../../assets/images/thread_communication.png" width="850">
 
 <h3 id="2">后台任务处理方式的选择</h3>
 
