@@ -17,3 +17,22 @@ Matching Java Virtual Machines (1):
 ```
 git submodule add https://xxx/xxx.git my/dir
 ```
+
+#### Github太慢解决方案
+
+1.查询github.com地址:[http://tool.chinaz.com/dns/?type=1&host=github.com&ip=](http://tool.chinaz.com/dns/?type=1&host=github.com&ip=)
+
+2.使用ping找出最快的ip地址
+```
+ping 192.30.255.112
+```
+
+3.找到hosts文件
+```
+cd /private/etc/
+open .
+```
+4.增加一行
+```
+192.30.255.112	github.com
+```
