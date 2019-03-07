@@ -17,6 +17,10 @@
 
 * ##### [BridgeInterceptor](#4)
 
+* ##### [缓存机制](#5)
+
+* ##### [连接池](#6)
+
 <h3 id="1">拦截器机制</h3>
 
 [wiki:Interceptors](https://github.com/square/okhttp/wiki/Interceptors)一张图说明了OkHttp的拦截器机制：
@@ -104,3 +108,15 @@ gzip相关逻辑在这里处理：
 * 为App的请求头加上\"Accept-Encoding\": \"gzip\"；
 * 根据服务端的返回头\"Content-Encoding\"，如果其值也等于gzip，则需要进行gzip解压缩再交给App。
 
+<h3 id="5">缓存机制</h3>
+
+缓存机制由CacheInterceptor来实现。
+
+* App调用OkHttpClient.Builder().cache(new Cache(getExternalCacheDir(), 1024 * 1024 * 20))来创建缓存目录；
+* 初次请求，当response和request的Cache-Control头的值均不为no-store时，网络请求缓存至本地。
+* 再次请求，客户端取缓存，如果有ETag，把ETag值取出来，放到请求头\"If-None-Match\"供服务端校验，如果服务器核对此值没有修改，将返回304 Not Modify，客户端可以直接使用已有缓存；
+* 如果服务端上次指定了Cache-Control: max-age=N，则客户端计算出当前时间是否处在缓存有效的区间，如果是，则不进行网络请求。
+
+<h3 id="6">ConnectInterceptor</h3>
+
+* 连接池的逻辑在ConnectInterceptor处理，用到的是http/1.1 keep-alive=true的属性，tcp连接保活。
