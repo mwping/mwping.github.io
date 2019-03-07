@@ -32,6 +32,7 @@ layout: default
 * [图解ThreadLocal](./opensource/ThreadLocal.html)
 * [Handler机制分析](./opensource/handler.html)
 * [Glide解析](./opensource/glide.html)
+* [okhttp详解](./network/http/okhttp-detail.html)
 
 ### Android专题
 
