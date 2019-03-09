@@ -9,6 +9,7 @@ layout: default
 * [Android课程实践](./android/course/home.html)
     1. [后台任务最佳实践](./android/course/best-background.html)
     2. [启动优化实践](./android/course/startup-performance.html)
+    3. [内存优化实践](./android/course/mem-performance.html)
 
 * [Udacity:Android性能优化](./android/course/udacity/android_performance.html)
 
