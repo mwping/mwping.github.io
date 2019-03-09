@@ -25,6 +25,11 @@
 
 * ##### [Call.cancel](#8)
 
+* ##### [各种Post请求的处理](#9)
+  1. [Post String](#9.1)
+  2. [Post Form](#9.2)
+  3. [Post File](#9.3)
+  4. [Post Multipart](#9.4)
 
 <h3 id="1">拦截器机制</h3>
 
@@ -113,6 +118,30 @@ gzip相关逻辑在这里处理：
 * 为App的请求头加上\"Accept-Encoding\": \"gzip\"；
 * 根据服务端的返回头\"Content-Encoding\"，如果其值也等于gzip，则需要进行gzip解压缩再交给App。
 
+post参数也在这里处理，例如构建如下请求
+```java
+    public static final MediaType JSON
+            = MediaType.get("application/json; charset=utf-8");
+
+    RequestBody body = RequestBody.create(JSON, "{\"a\":\"a\"}");
+    Request request = new Request.Builder()
+            .url(url)
+            .post(body)
+            .build();
+```
+BridgeInterceptor会加上如下Header：
+```
+Content-Type: application/json; charset=utf-8
+Content-Length: 9
+```
+
+另外，如果用户没有设置Host、Connection、User-Agent这两个请求头，BridgeInterceptor也会补充默认的：
+```
+Host: localhost:51857
+Connection: Keep-Alive
+User-Agent: okhttp/3.13.1
+```
+
 <h3 id="5">CacheInterceptor</h3>
 
 缓存机制由CacheInterceptor来实现。
@@ -121,6 +150,7 @@ gzip相关逻辑在这里处理：
 * 初次请求，当response和request的Cache-Control头的值均不为no-store时，网络请求缓存至本地。
 * 再次请求，客户端取缓存，如果有ETag，把ETag值取出来，放到请求头\"If-None-Match\"供服务端校验，如果服务器核对此值没有修改，将返回304 Not Modify，客户端可以直接使用已有缓存；
 * 如果服务端上次指定了Cache-Control: max-age=N，则客户端计算出当前时间是否处在缓存有效的区间，如果是，则不进行网络请求。
+* 如果接口返回了Date或者Last-Modified: Sat, 09 Mar 2019 13:06:48 GMT，下一次请求头加上If-Modified-Since: Sat, 09 Mar 2019 13:06:48 GMT，服务端判断超过了这个时间则返回新数据，否则可以返回304 Not Modify，app继续使用缓存。
 
 <h3 id="6">ConnectInterceptor</h3>
 
@@ -151,6 +181,7 @@ CallServerInterceptor负责向输出流写入request，并从输入流读取resp
 2. 写入空行(\"\n\r\")
 2. 遍历请求头，按格式\"header.name: header.value\"依次写入，每对Header换行；
 3. 换行；
+4. 写入requestBody，长度等于请求头\"Content-Length\"的长度。
 
 读response：
 
@@ -178,3 +209,101 @@ CallServerInterceptor负责向输出流写入request，并从输入流读取resp
     }
   }
 ```
+
+<h3 id="9">各种Post请求的处理</h3>
+
+<h4 id="9.1">Post String</h4>
+如果格式服务器不支持，则服务器将返回415 Unsupported Media Type。
+
+```java
+    public static final MediaType TEXT
+            = MediaType.get("text/plain; charset=utf-8");
+    RequestBody body = RequestBody.create(TEXT, "hello I am a string");
+    Request request = new Request.Builder()
+            .url(getUrl())
+            .post(body)
+            .build();
+    Response response = client.newCall(request).execute();
+```
+
+请求头：
+```
+    Content-Type: text/plain; charset=utf-8
+    Content-Length: 19
+```
+
+请求body为\"hello I am a string\"
+
+<h4 id="9.2">Post Form</h4>
+
+```java
+    private void doPostForm() {
+        RequestBody formBody = new FormBody.Builder()
+                .add("search", "Android")
+                .add("from", "mwp")
+                .build();
+        Request request = new Request.Builder()
+                .url("https://zh.wikipedia.org/w/index.php")
+                .post(formBody)
+                .build();
+
+        try {
+            Response response = client.newCall(request).execute();
+            Log.d(TAG, "doPostForm: " + response.body().string());
+        } catch (IOException e) {
+            Log.e(TAG, "doPostForm: ", e);
+        }
+    }
+```
+
+请求头：
+```
+    Content-Type: application/x-www-form-urlencoded
+    Content-Length: 23
+```
+
+请求body为\"search=Android&from=mwp\"。
+
+
+<h4 id="9.3">Post File</h4>
+
+```java
+    public static final MediaType MEDIA_TYPE_MARKDOWN
+            = MediaType.get("text/x-markdown; charset=utf-8");
+    File file = new File(Environment.getExternalStorageDirectory() + "/Download/test.md");
+    Request request = new Request.Builder()
+            .url("https://api.github.com/markdown/raw")
+            .post(RequestBody.create(MEDIA_TYPE_MARKDOWN, file))
+            .build();
+    Response response = client.newCall(request).execute();
+```
+请求头
+```
+    Content-Type: text/x-markdown; charset=utf-8
+    Content-Length: 9
+```
+
+<h4 id="9.4">Post Multipart</h4>
+
+```java
+    File f = new File(Environment.getExternalStorageDirectory() + "/Download/test.md");
+            Log.d(TAG, "doPostMultipart: File:" + f.length());
+    RequestBody requestBody = new MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("title", "test title")
+            .addFormDataPart("content", "file_name",
+                    RequestBody.create(TEXT, f))
+            .build();
+
+    Request request = new Request.Builder()
+            .url(getUrl())
+            .post(requestBody)
+            .build();
+    Response response = client.newCall(request).execute();
+```
+请求头：
+```
+    Content-Type: multipart/form-data; boundary=daa37881-9c17-4e83-99c5-08cdd5627d24
+    Content-Length: 345
+```
+
