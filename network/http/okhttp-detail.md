@@ -37,6 +37,8 @@
 
 <img src="https://raw.githubusercontent.com/wiki/square/okhttp/interceptors@2x.png" width="540">
 
+<img src="../../assets/images/okhttp.png" width="850">
+
 RealCall.java
 ```java
   Response getResponseWithInterceptorChain() throws IOException {
