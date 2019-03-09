@@ -17,9 +17,14 @@
 
 * ##### [BridgeInterceptor](#4)
 
-* ##### [缓存机制](#5)
+* ##### [CacheInterceptor](#5)
 
-* ##### [连接池](#6)
+* ##### [ConnectInterceptor](#6)
+
+* ##### [CallServerInterceptor](#7)
+
+* ##### [Call.cancel](#8)
+
 
 <h3 id="1">拦截器机制</h3>
 
@@ -108,7 +113,7 @@ gzip相关逻辑在这里处理：
 * 为App的请求头加上\"Accept-Encoding\": \"gzip\"；
 * 根据服务端的返回头\"Content-Encoding\"，如果其值也等于gzip，则需要进行gzip解压缩再交给App。
 
-<h3 id="5">缓存机制</h3>
+<h3 id="5">CacheInterceptor</h3>
 
 缓存机制由CacheInterceptor来实现。
 
@@ -119,4 +124,57 @@ gzip相关逻辑在这里处理：
 
 <h3 id="6">ConnectInterceptor</h3>
 
-* 连接池的逻辑在ConnectInterceptor处理，用到的是http/1.1 keep-alive=true的属性，tcp连接保活。
+ConnectInterceptor的主要目的是找到可用的socket连接。连接池的复用逻辑在这里处理，用到的是http/1.1 keep-alive=true的属性，tcp连接保活。连接(RealConnection)可复用的依据：
+
+1. 连接池不为空；
+2. 连接池空闲，即此连接的上一次客户端-服务器请求应答完毕；
+3. 请求地址的主机名host相等；
+
+连接池的保活时间，默认5分钟:
+```java
+  public ConnectionPool() {
+    this(5, 5, TimeUnit.MINUTES);
+  }
+```
+可自定义：
+```java
+OkHttpClient.Builder().connectionPool(new ConnectionPool(5, 15, TimeUnit.SECONDS));
+```
+
+<h3 id="7">CallServerInterceptor</h3>
+
+CallServerInterceptor负责向输出流写入request，并从输入流读取response。
+
+写入request：
+
+1. 写入\"GET / HTTP/1.1"；
+2. 写入空行(\"\n\r\")
+2. 遍历请求头，按格式\"header.name: header.value\"依次写入，每对Header换行；
+3. 换行；
+
+读response：
+
+1. 读取状态行，如\"HTTP/1.1 200 OK\"；
+2. 逐行读取Header，以\":\"为分隔符解析成key: value的形式；如\"Content-Length: 19\"；
+3. 从返回头Content-Length字段读取返回body的长度：例如上面的19；
+4. 如果返回头\"Connection\: close"，则关闭连接，否则保持连接(keep-alive)；
+5. 构造Response对象并返回。
+6. 通过Response.body().string()真正的把流读完。
+
+<h3 id="8">Call.cancel</h3>
+
+一个进行中的请求(RealCall)，调用cancel()会关闭socket：
+```java
+  public static void closeQuietly(Socket socket) {
+    if (socket != null) {
+      try {
+        socket.close();
+      } catch (AssertionError e) {
+        if (!isAndroidGetsocknameError(e)) throw e;
+      } catch (RuntimeException rethrown) {
+        throw rethrown;
+      } catch (Exception ignored) {
+      }
+    }
+  }
+```
