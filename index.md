@@ -35,7 +35,7 @@ layout: default
 * [Handler机制分析](./opensource/handler.html)
 * [Glide解析](./opensource/glide.html)
 * [okhttp详解](./network/http/okhttp-detail.html)
-* [ARouter解析](./network/http/ARouter.html)
+* [ARouter解析](./opensource/ARouter.html)
 
 ### Android专题
 
