@@ -36,6 +36,7 @@ layout: default
 * [Glide解析](./opensource/glide.html)
 * [okhttp详解](./network/http/okhttp-detail.html)
 * [ARouter解析](./opensource/ARouter.html)
+* [leakcanary解析](./opensource/leakcanary.html)
 
 ### Android专题
 
