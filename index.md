@@ -95,4 +95,5 @@ layout: default
 #### 准备
 
 * [Hungry](./help/hungry.html)
-* [Hungry_rn](./help/hungry_rn.html)
+* [ReactNative基础](./help/hungry_rn.html)
+* [ReactNative通信](./help/hungry_rn2.html)
