@@ -137,6 +137,15 @@
 |流量控制|是|否|
 |拥塞控制|慢启动|否|
 |实时性|低|高|
+|广播|1对1|1对多|
+
+#### 进程间通信
+
+|方式|优点|缺点|例子|
+|:-:|:-:|:-:|:-:|
+|Binder|架构清晰|拷贝1次|Messenger、AIDL、四大组件进程通信|
+|Socket|传输字节流|拷贝2次|跨网络通信|
+|共享内存|无需拷贝|控制复杂| |
 
 #### WebView优化点
 
@@ -144,3 +153,26 @@
 
 1. onPageStarted: WebSettings.setBlockNetworkImage(true);
 2. onPageFinished: WebSettings.setBlockNetworkImage(false);
+
+**独立进程**
+
+独立进程可以防止WebView内存泄漏导致整体App闪退。
+
+定义独立进程
+```xml
+    <activity
+        android:name=".WebViewActivity"
+        android:process=":webview"></activity>
+```
+
+销毁进程
+```java
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Process.killProcess(Process.myPid());
+        System.exit(0);
+    }
+```
+
+
