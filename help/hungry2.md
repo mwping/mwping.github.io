@@ -131,6 +131,11 @@ public final class GsonConverterFactory extends Converter.Factory {
     }
 ```
 
+#### WebView优化点
 
+1. 独立进程防止OOM影响整体App；
+2. setBlockNetworkImage图片后加载；
+3. 重写shouldInterceptRequest，使用Glide缓存突破原生WebView缓存上限；
+4. 监控超大图片；
 
 
