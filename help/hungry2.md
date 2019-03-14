@@ -1,5 +1,11 @@
 ## 待办事项
 
+#### 开源框架心得
+
+1. 大而全的谨慎使用；
+2. 放弃更新的不用；
+3. 加入中间层，方便后续替换；
+
 #### Glide vs Picasso
 
 |图片加载库|Glide|Picasso|
@@ -18,7 +24,7 @@
 |原图+缩略图|不需要每次请求网络，<br>不需要额外缩放|占磁盘|
 |不缓存|每次请求最新|最慢|
 
-**OkHttp**
+#### OkHttp
 
 从request出发，依次经历
 
@@ -67,3 +73,64 @@
 **CallServer拦截器**
 
 负责写request、读response。
+
+#### Retrofit
+
+**使用Builder模式创建Retrofit实例**
+```java
+    retrofit = new Retrofit.Builder()
+            .baseUrl(url)
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(client).build();
+```
+
+**使用动态代理生成HttpServiceMethod**
+
+```java
+  public <T> T create(final Class<T> service) {
+    Utils.validateServiceInterface(service);
+    if (validateEagerly) {
+      eagerlyValidateMethods(service);
+    }
+    return (T) Proxy.newProxyInstance(service.getClassLoader(), new Class<?>[] { service },
+        new InvocationHandler() {
+          private final Platform platform = Platform.get();
+          private final Object[] emptyArgs = new Object[0];
+
+          @Override public Object invoke(Object proxy, Method method, @Nullable Object[] args)
+              throws Throwable {
+            // If the method is a method from Object then defer to normal invocation.
+            if (method.getDeclaringClass() == Object.class) {
+              return method.invoke(this, args);
+            }
+            if (platform.isDefaultMethod(method)) {
+              return platform.invokeDefaultMethod(method, service, proxy, args);
+            }
+            return loadServiceMethod(method).invoke(args != null ? args : emptyArgs);
+          }
+        });
+  }
+```
+
+**使用工厂模式创建Converter**
+
+```
+public final class GsonConverterFactory extends Converter.Factory {
+
+}
+```
+
+**使用MainThreadExecutor将回调交给主线程**
+```java
+    static class MainThreadExecutor implements Executor {
+      private final Handler handler = new Handler(Looper.getMainLooper());
+
+      @Override public void execute(Runnable r) {
+        handler.post(r);
+      }
+    }
+```
+
+
+
+
