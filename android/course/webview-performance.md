@@ -9,5 +9,5 @@
 |首次加载速度(5张大图)|275ms|<font color='green'>258ms</font>|
 |首次加载速度(10张大图)|<font color='green'>433ms</font>|491ms|
 |磁盘缓存(15M)|414ms|<font color='green'>329ms</font>|
-
+|内存(10张大图)|100-106M|基本持平|
 
