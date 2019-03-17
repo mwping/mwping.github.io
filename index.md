@@ -13,6 +13,7 @@ layout: default
     4. [WebView优化实践](./android/course/webview-performance.html)
 
 * [Udacity:Android性能优化](./android/course/udacity/android_performance.html)
+* [团队工作](./android/course/teamwork.html)
 
 #### Android专题研究
 
