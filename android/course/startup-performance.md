@@ -27,3 +27,17 @@ Complete
 * 增加启动背景防止白屏等待；
 * 使用单例懒加载避免大量的静态变量直接初始化，也降低启动过程GC带来的耗时；
 * 不要过早的startService，减少CPU资源竞争。
+
+#### 使用systrace
+
+1.代码添加
+```java
+    TraceCompat.beginSection(sectionName);
+    // do something
+    TraceCompat.endSection();
+```
+
+python systrace.py -t 5 -a topic.android.sample.performance
+
+adb shell am start -S -W topic.android.sample.performance/.MainActivity
+
