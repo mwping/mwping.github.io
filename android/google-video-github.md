@@ -11,5 +11,6 @@
         <td><a href="https://mwping.github.io/assets/video/s2e4.mp4" target="_blank">04</a></td>
         <td><a href="https://mwping.github.io/assets/video/s2e5.mp4" target="_blank">05</a></td>
         <td><a href="https://mwping.github.io/assets/video/s2e6.mp4" target="_blank">06</a></td>
+        <td><a href="https://mwping.github.io/assets/video/第二季第四集s2e4.mp4" target="_blank">07</a></td>
     </tr>
 </table>
