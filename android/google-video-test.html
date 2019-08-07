@@ -12,14 +12,21 @@
     </video>
     <p id="duration">?</p>
     <p id="canplay">?</p>
+    <p id="play">?</p>
     <p id="playing">?</p>
     <p id="duration2">??</p>
     <p id="canplay2">??</p>
+    <p id="play2">??</p>
     <p id="playing2">??</p>
+    <p id="duration3">???</p>
+    <p id="canplay3">???</p>
+    <p id="play3">???</p>
+    <p id="playing3">???</p>
     <script type="text/javascript">
     function load() {
         console.log('load....')
         startListen()
+        startListen2()
     }
     </script>
     <script type="text/javascript">
@@ -27,19 +34,34 @@
         console.log('startListen....')
         var video = document.getElementsByTagName("video")[0];
         video.addEventListener('durationchange', (event) => {
-            console.log('durationchange->' + video.duration);
-            document.getElementById("duration").innerHTML = video.duration;
-        });
-        video.addEventListener('play', (event) => {
-            console.log('play, src=' + video.src);
+            document.getElementById("duration").innerHTML = "duration: " + video.duration;
         });
         video.addEventListener('canplay', (event) => {
-            console.log('canplay, src=' + video.src);
-            document.getElementById("canplay").innerHTML = video.src;
+            document.getElementById("canplay").innerHTML = "canplay: " + video.src;
+        });
+        video.addEventListener('play', (event) => {
+            document.getElementById("play").innerHTML = "play: " + video.src;
         });
         video.addEventListener('playing', (event) => {
-            console.log('playing, src=' + video.src);
             document.getElementById("playing").innerHTML = "playing: " + video.src;
+        });
+    }
+    </script>
+    <script type="text/javascript">
+    function startListen2() {
+        console.log('startListen....')
+        var video = document.getElementsByTagName("video")[0];
+        video.addEventListener('durationchange', (event) => {
+            document.getElementById("duration2").innerHTML = "duration: " + video.duration;
+        });
+        video.addEventListener('canplay', (event) => {
+            document.getElementById("canplay2").innerHTML = "canplay: " + video.src;
+        });
+        video.addEventListener('play', (event) => {
+            document.getElementById("play2").innerHTML = "play: " + video.src;
+        });
+        video.addEventListener('playing', (event) => {
+            document.getElementById("playing2").innerHTML = "playing: " + video.src;
         });
     }
     </script>
