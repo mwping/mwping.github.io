@@ -10,58 +10,31 @@
         <!-- <video src="../assets/video/butterfly.mp4" controls="controls" width="320" height="180"> -->
         您的浏览器不支持 video 标签。
     </video>
-    <p id="duration">?</p>
-    <p id="canplay">?</p>
-    <p id="play">?</p>
-    <p id="playing">?</p>
-    <p id="duration2">??</p>
-    <p id="canplay2">??</p>
-    <p id="play2">??</p>
-    <p id="playing2">??</p>
-    <p id="duration3">???</p>
-    <p id="canplay3">???</p>
-    <p id="play3">???</p>
-    <p id="playing3">???</p>
     <script type="text/javascript">
     function load() {
-        console.log('load....')
-        startListen()
+        setupVidePlayingListener()
     }
     </script>
     <script type="text/javascript">
-    function startListen() {
-        console.log('startListen....')
-        var video = document.getElementsByTagName("video")[0];
-        video.addEventListener('durationchange', (event) => {
-            document.getElementById("duration").innerHTML = "duration: " + video.duration;
-        });
-        video.addEventListener('canplay', (event) => {
-            document.getElementById("canplay").innerHTML = "canplay: " + video.src;
-        });
-        video.addEventListener('play', (event) => {
-            document.getElementById("play").innerHTML = "play: " + video.src;
-        });
-        video.addEventListener('playing', (event) => {
-            document.getElementById("playing").innerHTML = "playing: " + video.src;
-        });
-    }
-    </script>
-    <script type="text/javascript">
-    function startListen2() {
-        console.log('startListen....')
-        var video = document.getElementsByTagName("video")[0];
-        video.addEventListener('durationchange', (event) => {
-            document.getElementById("duration2").innerHTML = "duration: " + video.duration;
-        });
-        video.addEventListener('canplay', (event) => {
-            document.getElementById("canplay2").innerHTML = "canplay: " + video.src;
-        });
-        video.addEventListener('play', (event) => {
-            document.getElementById("play2").innerHTML = "play: " + video.src;
-        });
-        video.addEventListener('playing', (event) => {
-            document.getElementById("playing2").innerHTML = "playing: " + video.src;
-        });
+    function setupVidePlayingListener() {
+        var callback = function(event) {
+            var video = event.target
+            var params = {
+                "src": video.src,
+                "duration": video.duration,
+            }
+            console.log('play callback...' + JSON.stringify(params))
+        }
+        document.addEventListener("play", callback, true)
+
+        var callback2 = function(event) {
+            var video = event.target
+            var params = {
+                "duration": video.duration,
+            }
+            console.log('durationchange...' + JSON.stringify(params))
+        }
+        document.addEventListener("durationchange", callback2, true)
     }
     </script>
 </body>
