@@ -6,35 +6,35 @@
 </head>
 
 <body onload="load()">
-    <video src="https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4" controls="controls" width="320" height="180">
-        <!-- <video src="../assets/video/butterfly.mp4" controls="controls" width="320" height="180"> -->
+    <!-- <video src="https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4" controls="controls" width="320" height="180"> -->
+        <video src="../assets/video/butterfly.mp4" controls="controls" width="320" height="180">
         您的浏览器不支持 video 标签。
     </video>
     <script type="text/javascript">
     function load() {
-        // setupVidePlayingListener()
+        setupVidePlayingListener()
     }
     </script>
     <script type="text/javascript">
     function setupVidePlayingListener() {
         var callback = function(event) {
-            var video = event.target
+            var video = event.target;
             var params = {
                 "src": video.src,
                 "duration": video.duration,
-            }
-            console.log('play callback...' + JSON.stringify(params))
-        }
-        document.addEventListener("play", callback, true)
+            };
+            console.log('play callback...' + JSON.stringify(params));
+        };
+        document.addEventListener("play", callback, true);
 
         var callback2 = function(event) {
-            var video = event.target
+            var video = event.target;
             var params = {
                 "duration": video.duration,
-            }
-            console.log('durationchange...' + JSON.stringify(params))
-        }
-        document.addEventListener("durationchange", callback2, true)
+            };
+            console.log('durationchange...' + JSON.stringify(params));
+        };
+        document.addEventListener("durationchange", callback2, true);
     }
     </script>
 </body>
