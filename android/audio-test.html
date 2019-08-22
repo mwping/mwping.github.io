@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+</head>
+
+<body onload="load()">
+    <audio src="../assets/audio/李昕融,樊桐舟,李凯稠-你笑起来真好看.mp3" controls="controls">
+    </audio>
+    <script type="text/javascript">
+    function load() {
+        setupVidePlayingListener()
+    }
+    </script>
+    <script type="text/javascript">
+    function setupVidePlayingListener() {
+        var callback = function(event) {
+            var audio = event.target;
+            var params = {
+                "src": audio.src,
+                "duration": audio.duration,
+            };
+            console.log('play...' + JSON.stringify(params));
+        };
+        document.addEventListener('play', callback, true);
+    }
+    </script>
+</body>
+
+</html>

@@ -6,8 +6,8 @@
 </head>
 
 <body onload="load()">
-    <video src="https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4" controls="controls" width="320" height="180">
-        <!-- <video src="../assets/video/butterfly.mp4" controls="controls" width="320" height="180"> -->
+    <!-- <video src="https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4" controls="controls" width="320" height="180"> -->
+        <video src="../assets/video/s2e6.mp4" controls="controls" width="320" height="180">
         您的浏览器不支持 video 标签。
     </video>
     <script type="text/javascript">
@@ -23,7 +23,7 @@
                 "src": video.src,
                 "duration": video.duration,
             };
-            console.log('play callback...' + JSON.stringify(params));
+            console.log('play callback...' + JSON.stringify(params)+" video id="+ video.id);
         };
         document.addEventListener("play", callback, true);
 
