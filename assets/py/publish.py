@@ -45,7 +45,7 @@ def upload():
 	print "Run cmd: %s" % cmd
 	os.system(cmd)
 
-	base_url = 'https://apps.springtech.info/apps'
+	base_url = 'https://apps.etm.tech/apps'
 
 
 	cfg = yaml.load_all(changelogFile, yaml.SafeLoader)
